@@ -15,6 +15,7 @@
 using namespace std;
 // inatilize SIZE of image 256 * 256
 unsigned char image[256][256];
+unsigned char image2[256][256];
 
 // declaration of function for load the image
 void loadImage();
@@ -24,13 +25,24 @@ void saveImage();
 
 // declaration of function for convert the image to black and white image
 void convertImageToBlackAndWhiteImage();
-
+// declaration of function for two images
+void mergeImage();
+// declaration of function for to loadimage2
+void loadSecondImage();
 //  declaration of function for Flip The Image
 void flipImage();
 
-void reverseColumns();
+// declaration of function for rotate the image 180 degree
+void rotate_180_degree();
 
-void transpose();
+// declaration of function for Rotate the Image
+void rotateImage(int &degreeOfRotate);
+
+// declaration of function for rotate the image 90 degree
+void rotate_90_degree();
+
+// declaration of function for rotate the image 270 degree
+void rotate_270_degree();
 
 // declaration of function for Mirror the Image
 void mirrorImage();
@@ -44,8 +56,8 @@ int main() {
         cout << "2- Invert Filter" << endl;
         cout << "3- Merge Filter" << endl;
         cout << "4- Flip Image" << endl;
-        cout << "5- Darken and Lighten Image" << endl;
-        cout << "6- Rotate Image" << endl;
+        cout << "5- Rotate Image" << endl;
+        cout << "6- Darken and Lighten Image" << endl;
         cout << "7- Detect Image Edges" << endl;
         cout << "8- Enlarge Image" << endl;
         cout << "9- Shrink Image" << endl;
@@ -65,6 +77,12 @@ int main() {
             cout << '2' << endl;
         } else if (choose == '3') {
             loadImage();
+            cout << "ammar." << endl;
+            cout << '3' << endl;
+            loadSecondImage();
+            cout << '3' << endl;
+            mergeImage();
+            cout << '3' << endl;
             saveImage();
             cout << '3' << endl;
         } else if (choose == '4') {
@@ -72,9 +90,21 @@ int main() {
             flipImage();
             saveImage();
         } else if (choose == '5') {
+            cout << '5' << endl;
+            int degreeOfRotate;
+            cout << "Rotate (90), (180) or (270) degree? ";
+            cin >> degreeOfRotate;
             loadImage();
+            rotateImage(degreeOfRotate);
+            cout << '5' << endl;
+            cout << '5' << endl;
+            cout << '5' << endl;
+
             saveImage();
             cout << '5' << endl;
+            cout << '5' << endl;
+            cout << '5' << endl;
+
         } else if (choose == '6') {
             loadImage();
             saveImage();
@@ -168,17 +198,11 @@ void convertImageToBlackAndWhiteImage() {
 //  definition of function for Flip The Image
 void flipImage() {
     // First reverse elements of every colum
-    reverseColumns();
-    // Then find transpose
-    transpose();
-    // Then reverse elements of every column again
-    reverseColumns();
-    // Then find transpose again
-    transpose();
+    rotate_180_degree();
 }
 
 // Function to rotate the matrix by 180 degree
-void reverseColumns() {
+void rotate_180_degree() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0, k = SIZE - 1; j < k; j++, k--) {
             // reverse elements of every column.
@@ -188,11 +212,15 @@ void reverseColumns() {
 }
 
 // Function for transpose of matrix
-void transpose() {
+void rotate_90_degree() {
     for (int i = 0; i < SIZE; i++) {
-        for (int j = i; j < SIZE; j++) {
+        int temp = 255;
+        for (int j = 0; j < SIZE; j++) {
+            image[j+temp][i] = image[i][j];
+            temp -= 1;
+            /*
             // swap every column with the opposite row
-            swap(image[i][j], image[j][i]);
+            swap(image[i][j], image[j][i]);*/
         }
     }
 }
@@ -238,4 +266,38 @@ void mirrorImage() {
            image[swapRow][col] = temp;
        }
    }*/
+}
+
+void rotateImage(int &degreeOfRotate) {
+    if (degreeOfRotate == 90) {
+        rotate_90_degree();
+    } else if (degreeOfRotate == 180) {
+        rotate_180_degree();
+    } else if (degreeOfRotate == 270) {
+
+    } else {
+        cout << "invalid degree" << endl;
+    }
+}
+
+void loadSecondImage(){
+    char image2FileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name of image2: ";
+    cin >> image2FileName;
+
+    // Add to image file name .bmp extension and load image
+    strcat(image2FileName, ".bmp");
+    readGSBMP(image2FileName, image2);
+}
+
+void mergeImage(){
+    int avg = 0;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            avg = (image[i][j] + image2[i][j]) / 2;
+            image[i][j] = image[avg][avg];
+        }
+    }
 }
