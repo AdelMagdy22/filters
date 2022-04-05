@@ -25,10 +25,13 @@ void saveImage();
 
 // declaration of function for convert the image to black and white image
 void convertImageToBlackAndWhiteImage();
+
 // declaration of function for two images
 void mergeImage();
+
 // declaration of function for to loadimage2
 void loadSecondImage();
+
 //  declaration of function for Flip The Image
 void flipImage();
 
@@ -96,14 +99,7 @@ int main() {
             cin >> degreeOfRotate;
             loadImage();
             rotateImage(degreeOfRotate);
-            cout << '5' << endl;
-            cout << '5' << endl;
-            cout << '5' << endl;
-
             saveImage();
-            cout << '5' << endl;
-            cout << '5' << endl;
-            cout << '5' << endl;
 
         } else if (choose == '6') {
             loadImage();
@@ -214,47 +210,59 @@ void rotate_180_degree() {
 // Function for transpose of matrix
 void rotate_90_degree() {
     for (int i = 0; i < SIZE; i++) {
-        int temp = 255;
         for (int j = 0; j < SIZE; j++) {
-            image[j+temp][i] = image[i][j];
-            temp -= 1;
-            /*
+            image[i][j] = image[j][i];
+
             // swap every column with the opposite row
-            swap(image[i][j], image[j][i]);*/
+            //swap(image[i][j], image[j][i]);
         }
     }
 }
 
 void mirrorLeftRight() {
-    for (int x = 0; x < SIZE / 2; x++) {
-        for (int y = 0; y < SIZE; y++) {
-            int temp = image[x][y];
-            image[x][y] = image[SIZE - x][y];
-            image[SIZE - x][y] = temp;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE / 2; j++) {
+            image[i][SIZE - 1 - j] = image[i][j];
         }
     }
+}
+
+void mirrorRightLeft() {
+    /*for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE / 2; j++) {
+            image[i][j] = image[i][SIZE - 1 - j];
+        }
+    }*/
 }
 
 void mirrorUpDown() {
-    for (int x = 0; x < SIZE; x++) {
-        for (int y = 0; y < SIZE / 2; y++) {
-            int temp = image[x][y];
-            image[x][y] = image[x][SIZE - y];
-            image[x][SIZE - y] = temp;
+    /*for (int i = 0; i < SIZE / 2; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            image[SIZE - 1 - i][j] = image[i][j];
         }
-    }
+    }*/
+}
+
+void mirrorDownUp() {
+    cout << "d ";
 }
 
 void mirrorImage() {
-    mirrorUpDown();
-    /*char mirrorSide;
+    mirrorLeftRight();
+    char mirrorSide;
     cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? ";
     cin >> mirrorSide;
-    if(mirrorSide == 'l'){
-        mirrorLeftRight()
-    }else if (mirrorSide == 'u'){
+    if (mirrorSide == 'l') {
+        mirrorLeftRight();
+    } else if (mirrorSide == 'r') {
+        mirrorRightLeft();
+    } else if (mirrorSide == 'u') {
         mirrorUpDown();
-    }*/
+    } else if (mirrorSide == 'd') {
+        mirrorDownUp();
+    } else {
+        cout << "invalid side" << endl;
+    }
     /*for (int row = 0; row < SIZE / 2; row++)
    {
        for (int col = 0; col < SIZE; col++)
@@ -280,7 +288,7 @@ void rotateImage(int &degreeOfRotate) {
     }
 }
 
-void loadSecondImage(){
+void loadSecondImage() {
     char image2FileName[100];
 
     // Get gray scale image file name
@@ -292,7 +300,7 @@ void loadSecondImage(){
     readGSBMP(image2FileName, image2);
 }
 
-void mergeImage(){
+void mergeImage() {
     int avg = 0;
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
