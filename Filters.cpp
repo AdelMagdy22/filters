@@ -86,7 +86,6 @@ int main() {
             flipImage();
             saveImage();
         } else if (choose == '5') {
-            cout << '5' << endl;
             int degreeOfRotate;
             cout << "Rotate (90), (180) or (270) degree? ";
             cin >> degreeOfRotate;
