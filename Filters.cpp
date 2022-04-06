@@ -14,8 +14,8 @@
 
 using namespace std;
 // inatilize SIZE of image 256 * 256
-unsigned char image[256][256];
-unsigned char image2[256][256];
+unsigned char image[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 
 // declaration of function for load the image
 void loadImage();
@@ -239,10 +239,9 @@ void loadSecondImage() {
 }
 
 void mergeImage() {
-    int avg = 0;
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            avg = (image[i][j] + image2[i][j]) / 2;
+            int avg = (image[i][j] + image2[i][j]) / 2;
             image[i][j] = image[avg][avg];
         }
     }
