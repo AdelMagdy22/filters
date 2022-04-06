@@ -47,8 +47,6 @@ void rotate_90_degree();
 // declaration of function for rotate the image 270 degree
 void rotate_270_degree();
 
-// declaration of function for Mirror the Image
-void mirrorImage();
 
 int main() {
     char choose = ' ';
@@ -80,14 +78,9 @@ int main() {
             cout << '2' << endl;
         } else if (choose == '3') {
             loadImage();
-            cout << "ammar." << endl;
-            cout << '3' << endl;
             loadSecondImage();
-            cout << '3' << endl;
             mergeImage();
-            cout << '3' << endl;
             saveImage();
-            cout << '3' << endl;
         } else if (choose == '4') {
             loadImage();
             flipImage();
@@ -100,7 +93,6 @@ int main() {
             loadImage();
             rotateImage(degreeOfRotate);
             saveImage();
-
         } else if (choose == '6') {
             loadImage();
             saveImage();
@@ -119,7 +111,6 @@ int main() {
             cout << '9' << endl;
         } else if (choose == 'a') {
             loadImage();
-            mirrorImage();
             saveImage();
             cout << 'a' << endl;
         } else if (choose == 'b') {
@@ -197,7 +188,7 @@ void flipImage() {
     rotate_180_degree();
 }
 
-// Function to rotate the matrix by 180 degree
+// Function to rotate the rotate by 180 degree
 void rotate_180_degree() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0, k = SIZE - 1; j < k; j++, k--) {
@@ -218,71 +209,19 @@ void rotate_90_degree() {
         }
     }
 }
-
-void mirrorLeftRight() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE / 2; j++) {
-            image[i][SIZE - 1 - j] = image[i][j];
-        }
-    }
+// function for rotete the image by 270 degree
+void rotate_270_degree(){
+    rotate_90_degree();
+    rotate_180_degree();
 }
-
-void mirrorRightLeft() {
-    /*for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE / 2; j++) {
-            image[i][j] = image[i][SIZE - 1 - j];
-        }
-    }*/
-}
-
-void mirrorUpDown() {
-    /*for (int i = 0; i < SIZE / 2; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            image[SIZE - 1 - i][j] = image[i][j];
-        }
-    }*/
-}
-
-void mirrorDownUp() {
-    cout << "d ";
-}
-
-void mirrorImage() {
-    mirrorLeftRight();
-    char mirrorSide;
-    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? ";
-    cin >> mirrorSide;
-    if (mirrorSide == 'l') {
-        mirrorLeftRight();
-    } else if (mirrorSide == 'r') {
-        mirrorRightLeft();
-    } else if (mirrorSide == 'u') {
-        mirrorUpDown();
-    } else if (mirrorSide == 'd') {
-        mirrorDownUp();
-    } else {
-        cout << "invalid side" << endl;
-    }
-    /*for (int row = 0; row < SIZE / 2; row++)
-   {
-       for (int col = 0; col < SIZE; col++)
-       {
-           int swapRow = SIZE - 1 - row; // Mirror pixel
-
-           unsigned char temp = image[row][col];
-           image[row][col] = image[swapRow][col];
-           image[swapRow][col] = temp;
-       }
-   }*/
-}
-
+// function for rotate the image like the user want (90), (180) or (270)  
 void rotateImage(int &degreeOfRotate) {
     if (degreeOfRotate == 90) {
         rotate_90_degree();
     } else if (degreeOfRotate == 180) {
         rotate_180_degree();
     } else if (degreeOfRotate == 270) {
-
+        rotate_270_degree();
     } else {
         cout << "invalid degree" << endl;
     }
