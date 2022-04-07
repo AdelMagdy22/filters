@@ -1,3 +1,4 @@
+
 // Program: Filters.cpp
 // Purpose: Demonstrate use of bmplip for handling
 //          bmp colored and grayscale images
@@ -39,7 +40,7 @@ void flipImage();
 void rotate_180_degree();
 
 // declaration of function for Rotate the Image
-void rotateImage(int &degreeOfRotate);
+void rotateImage(int& degreeOfRotate);
 
 // declaration of function for rotate the image 90 degree
 void rotate_90_degree();
@@ -72,40 +73,51 @@ int main() {
             loadImage();
             convertImageToBlackAndWhiteImage();
             saveImage();
-        } else if (choose == '2') {
+        }
+        else if (choose == '2') {
             loadImage();
             saveImage();
             cout << '2' << endl;
-        } else if (choose == '3') {
+        }
+        else if (choose == '3') {
             loadImage();
             loadSecondImage();
             mergeImage();
             saveImage();
-        } else if (choose == '4') {
+        }
+        else if (choose == '4') {
             loadImage();
             flipImage();
             saveImage();
-        } else if (choose == '5') {
+        }
+        else if (choose == '5') {
             int degreeOfRotate;
             cout << "Rotate (90), (180) or (270) degree? ";
             cin >> degreeOfRotate;
             loadImage();
             rotateImage(degreeOfRotate);
             saveImage();
-        } else if (choose == '6') {
+        }
+        else if (choose == '6') {
             loadImage();
+            string lightenordarken;
+            cout << "do you want to (d)arken or (l)ighten? "
+            cin >> lightenordarken;
             darkenandlightenimge();
             saveImage();
             cout << '6' << endl;
-        } else if (choose == '7') {
+        }
+        else if (choose == '7') {
             loadImage();
             saveImage();
             cout << '7' << endl;
-        } else if (choose == '8') {
+        }
+        else if (choose == '8') {
             loadImage();
             saveImage();
             cout << '8' << endl;
-        } else if (choose == '9') {
+        }
+        else if (choose == '9') {
             float reductionratio;
             cout << "Shrink to (1/2), (1/3) or (1/4)?";
             cin >> reductionratio;
@@ -113,23 +125,28 @@ int main() {
             //shrinkimage(reductionratio);
             saveImage();
             cout << '9' << endl;
-        } else if (choose == 'a') {
+        }
+        else if (choose == 'a') {
             loadImage();
             saveImage();
             cout << 'a' << endl;
-        } else if (choose == 'b') {
+        }
+        else if (choose == 'b') {
             loadImage();
             saveImage();
             cout << 'b' << endl;
-        } else if (choose == 'c') {
+        }
+        else if (choose == 'c') {
             loadImage();
             saveImage();
             cout << 'c' << endl;
-        } else if (choose == 's') {
+        }
+        else if (choose == 's') {
             loadImage();
             saveImage();
             cout << 's' << endl;
-        } else {
+        }
+        else {
             return 0;
         }
     }
@@ -178,7 +195,8 @@ void convertImageToBlackAndWhiteImage() {
             if (image[i][j] > avg) {
                 // convert all pixels that greater than average to White
                 image[i][j] = 255;
-            } else {
+            }
+            else {
                 // convert all pixels that less than average to Black
                 image[i][j] = 0;
             }
@@ -214,19 +232,22 @@ void rotate_90_degree() {
     }
 }
 // function for rotete the image by 270 degree
-void rotate_270_degree(){
+void rotate_270_degree() {
     rotate_90_degree();
     rotate_180_degree();
 }
 // function for rotate the image like the user want (90), (180) or (270)  
-void rotateImage(int &degreeOfRotate) {
+void rotateImage(int& degreeOfRotate) {
     if (degreeOfRotate == 90) {
         rotate_90_degree();
-    } else if (degreeOfRotate == 180) {
+    }
+    else if (degreeOfRotate == 180) {
         rotate_180_degree();
-    } else if (degreeOfRotate == 270) {
+    }
+    else if (degreeOfRotate == 270) {
         rotate_270_degree();
-    } else {
+    }
+    else {
         cout << "invalid degree" << endl;
     }
 }
@@ -247,13 +268,13 @@ void mergeImage() {
     int avg[SIZE][SIZE];
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            avg[i][j] = (image[i][j] + image2[i][j] ) / 2 ;
+            avg[i][j] = (image[i][j] + image2[i][j]) / 2;
             image[i][j] = avg[i][j];
         }
     }
 }
 
-void darkenandlightenimge() {
+void darkenimge() {
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
             image[i][j] *= 1.5;
@@ -267,30 +288,30 @@ void darkenandlightenimge() {
         }
     }
 }
-/*
-void shrinkimage_1 / 4() {
-    shrinkimage_1 / 3();
-    shrinkimage_1 / 2();
-}
-
-void shrinkimage(float&reductionratio ) {
-    if (reductionratio == 1/4) {
-        shrinkimage_1 / 4();
-    }
-    else if (reductionratio == 1 / 3) {
-        shrinkimage_1 / 3();
-    }
-    else if (reductionratio == 1 / 2) {
-        shrinkimage_1 / 2();
-    }
-    else {
-        cout << "invalid " << endl;
-    }
-}*/
-/*void shrinkimage_1 / 4() {
-
-void shrinkimage(){
+void lightenimge() {
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            image[i][j]*=
-            */
+            image[i][j] *= 0.5;
+
+            if (image[i][j] > 255) {
+                image[i][j] = 255;
+            }
+            else if (image[i][j] < 0) {
+                image[i][j] = 0;
+            }
+        }
+    }
+}
+
+void  darkenandlightenimge(string&lightenordarken) {
+    if (lightenordarken == d) {
+        darkenimge();
+    }
+    else if (lightenordarken == l) {
+        lightenimge();
+    }
+   
+    else {
+        cout << "invalid degree" << endl;
+    }
+}
