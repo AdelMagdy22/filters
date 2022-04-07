@@ -94,6 +94,7 @@ int main() {
             saveImage();
         } else if (choose == '6') {
             loadImage();
+            darkenandlightenimge();
             saveImage();
             cout << '6' << endl;
         } else if (choose == '7') {
@@ -105,7 +106,11 @@ int main() {
             saveImage();
             cout << '8' << endl;
         } else if (choose == '9') {
+            float reductionratio;
+            cout << "Shrink to (1/2), (1/3) or (1/4)?";
+            cin >> reductionratio;
             loadImage();
+            shrinkimage(reductionratio)
             saveImage();
             cout << '9' << endl;
         } else if (choose == 'a') {
@@ -241,8 +246,44 @@ void loadSecondImage() {
 void mergeImage() {
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            int avg = (image[i][j] + image2[i][j]) / 2;
-            image[i][j] = image[avg][avg];
+            int avg[][] = (image[i][j] + image2[i][j]) / 2;
+            image[i][j] = avg[][];
         }
     }
 }
+
+void darkenandlightenimge() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] *= 1.5
+
+            if (image[i][j] > avg) {
+                image[i][j] = 255;
+            }
+            else if (image[i][j] < 0) {
+                image[i][j] = 0;
+            }
+        }
+    }
+}
+void shrinkimage_1/4() {
+    shrinkimage_1/3();
+    shrinkimage_1/2();
+}
+
+void shrinkimage(float&reductionratio ) {
+    if (reductionratio == 1/4) {
+        shrinkimage_1 / 4();
+    }
+    else if (reductionratio == 1 / 3) {
+        shrinkimage_1 / 3();
+    }
+    else if (reductionratio == 1 / 2) {
+        shrinkimage_1 / 2();
+    }
+    else {
+        cout << "invalid " << endl;
+    }
+}
+
+
