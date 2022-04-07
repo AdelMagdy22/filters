@@ -16,12 +16,16 @@ using namespace std;
 // inatilize SIZE of image 256 * 256
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
+unsigned char rotate[SIZE][SIZE];
 
 // declaration of function for load the image
 void loadImage();
 
 // declaration of function for save the image
 void saveImage();
+
+// declaration of function for to load new image for rotate
+void saveRotate();
 
 // declaration of function for convert the image to black and white image
 void convertImageToBlackAndWhiteImage();
@@ -38,14 +42,14 @@ void loadSecondImage();
 //  declaration of function for Flip The Image
 void flipImage();
 
-// declaration of function for rotate the image 180 degree
-void rotate_180_degree();
-
 // declaration of function for Rotate the Image
 void rotateImage(int &degreeOfRotate);
 
 // declaration of function for rotate the image 90 degree
 void rotate_90_degree();
+
+// declaration of function for rotate the image 180 degree
+void rotate_180_degree();
 
 // declaration of function for rotate the image 270 degree
 void rotate_270_degree();
@@ -99,19 +103,17 @@ int main() {
             cin >> degreeOfRotate;
             loadImage();
             rotateImage(degreeOfRotate);
-            saveImage();
+            saveRotate();
         } else if (choose == '6') {
             char choose1;
             cout << "do you want to (d)arken or (l)ighten? ";
             cin >> choose1;
             loadImage();
-            if (choose1 == 'l'){
+            if (choose1 == 'l') {
                 lightenImage();
-            }
-            else if (choose1 == 'd'){
+            } else if (choose1 == 'd') {
                 darkenImage();
-            }
-            else{
+            } else {
                 cout << "invalid";
             }
             saveImage();
@@ -153,6 +155,167 @@ int main() {
 // definition of function for load the image
 void loadImage() {
     char imageFileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name: ";
+    cin >> imageFileName;
+
+    // Add to image file name .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    readGSBMP(imageFileName, image);
+}
+
+// definition of function for save the image
+void saveImage() {
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to image file name .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    writeGSBMP(imageFileName, image);
+}
+
+// definition of function for save the rotate image
+void saveRotate() {
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to image file name .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    writeGSBMP(imageFileName, rotate);
+}
+
+// definition of function for convert image to black and white image
+void convertImageToBlackAndWhiteImage() {
+    // inatialize average to calculate the average of the pixels of image
+    int avg = 0;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            avg += image[i][j];
+        }
+    }
+    avg /= (SIZE * SIZE);
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (image[i][j] > avg) {
+                // convert all pixels that greater than average to White
+                image[i][j] = 255;
+            } else {
+                // convert all pixels that less than average to Black
+                image[i][j] = 0;
+            }
+        }
+    }
+}
+
+void Invert() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] = 255 - image[i][j];
+        }
+    }
+}
+
+//  definition of function for Flip The Image
+void flipImage() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0, k = SIZE - 1; j < k; j++, k--) {
+            // reverse elements of every column.
+            swap(image[j][i], image[k][i]);
+        }
+    }
+}
+
+// Function to rotate the rotate by 180 degree
+void rotate_180_degree() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0, k = SIZE - 1; j < k; j++, k--) {
+            // reverse elements of every column.
+            swap(image[j][i], image[k][i]);
+        }
+    }
+}
+
+// Function for transpose of matrix
+void rotate_90_degree() {
+    for (int i = 0; i < SIZE; i++) {
+
+        for (int j = 0; j < SIZE; j++) {
+            rotate[i][j] = image[SIZE - j][i];
+        }
+    }
+}
+
+
+// function for rotete the image by 270 degree
+void rotate_270_degree() {
+    rotate_90_degree();
+    rotate_180_degree();
+}
+
+// function for rotate the image like the user want (90), (180) or (270)
+void rotateImage(int &degreeOfRotate) {
+    if (degreeOfRotate == 90) {
+        rotate_90_degree();
+    } else if (degreeOfRotate == 180) {
+        rotate_180_degree();
+    } else if (degreeOfRotate == 270) {
+        rotate_270_degree();
+    } else {
+        cout << "invalid degree" << endl;
+    }
+}
+
+void loadSecondImage() {
+    char image2FileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name of image2: ";
+    cin >> image2FileName;
+
+    // Add to image file name .bmp extension and load image
+    strcat(image2FileName, ".bmp");
+    readGSBMP(image2FileName, image2);
+}
+
+void mergeImage() {
+    int avg[SIZE][SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            avg[i][j] = (image[i][j] + image2[i][j]) / 2;
+            image[i][j] = avg[i][j];
+        }
+    }
+}
+
+void lightenImage() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+
+            if ((image[i][j] *= 1.5) > 255) {
+                image[i][j] = 255;
+            } else {
+                image[i][j] *= 1.5;
+            }
+        }
+    }
+}
+
+void darkenImage() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] *= 0.5;
+        }
+    }
+}
+FileName[100];
 
     // Get gray scale image file name
     cout << "Enter the source image file name: ";
