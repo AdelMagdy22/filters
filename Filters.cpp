@@ -61,6 +61,12 @@ void lightenImage();
 // declaration of function for darken an image
 void darkenImage();
 
+void EnlargeImage(int &quarter);
+void EnlargeImage1();
+void EnlargeImage2();
+void EnlargeImage3();
+void EnlargeImage4();
+
 
 int main() {
     char choose = ' ';
@@ -131,9 +137,12 @@ int main() {
             saveImage();
             cout << '7' << endl;
         } else if (choose == '8') {
+           int quarter;
+            cout<<"which one of the four quarters do you want to get bigger ? ";
+            cin>> quarter;
             loadImage();
-            saveImage();
-            cout << '8' << endl;
+            EnlargeImage(quarter);
+            saveRotate();
         } else if (choose == '9') {
             loadImage();
             saveImage();
@@ -333,6 +342,63 @@ void darkenImage() {
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
             image[i][j] *= 0.5;
+        }
+    }
+}
+void EnlargeImage(int &quarter){
+    if (quarter ==1){
+        EnlargeImage1();
+    } else if (quarter ==2){
+        EnlargeImage2();
+    } else if (quarter ==3){
+        EnlargeImage3();
+    } else if (quarter ==4){
+        EnlargeImage4();
+    } else{
+        cout << "invalid quarter "<< endl;
+    }
+}
+
+void EnlargeImage1(){
+     for (int i = 0 ,k=0; i < (SIZE/2) ,k < SIZE; k+=2 ,i++) {
+        for (int j = 0, l=0; j < (SIZE/2 ),l<SIZE; j++,l+=2){
+            rotate[k][l]=image[i][j];
+            rotate[k][l+1]=image[i][j];
+            rotate[k+1][l]=image[i][j];
+            rotate[k+1][l+1]=image[i][j];
+
+        }
+    }
+}
+void EnlargeImage2(){
+    for (int i = 0 ,k=0; i < SIZE ,k < SIZE; k+=2 ,i++) {
+        for (int j = SIZE/2, l=0; j < SIZE,l<SIZE; j++,l+=2){
+            rotate[k][l]=image[i][j];
+            rotate[k][l+1]=image[i][j];
+            rotate[k+1][l]=image[i][j];
+            rotate[k+1][l+1]=image[i][j];
+        }
+    }
+}
+
+void EnlargeImage3(){
+     for (int i = SIZE/2 ,k=0; i < SIZE ,k < SIZE; k+=2 ,i++) {
+        for (int j = 0, l=0; j < (SIZE/2 ),l<SIZE; j++,l+=2){
+            rotate[k][l]=image[i][j];
+            rotate[k][l+1]=image[i][j];
+            rotate[k+1][l]=image[i][j];
+            rotate[k+1][l+1]=image[i][j];
+        }
+    }
+}
+
+void EnlargeImage4(){
+    for (int i = SIZE/2 ,k=0; i < SIZE ,k < SIZE; k+=2 ,i++) {
+        for (int j = SIZE/2, l=0; j < (SIZE/2 ),l<SIZE; j++,l+=2){
+            rotate[k][l]=image[i][j];
+            rotate[k][l+1]=image[i][j];
+            rotate[k+1][l]=image[i][j];
+            rotate[k+1][l+1]=image[i][j];
         }
     }
 }
