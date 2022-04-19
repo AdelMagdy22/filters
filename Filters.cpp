@@ -142,6 +142,7 @@ int main() {
             saveImage();
         } else if (choose == '7') {
             loadImage();
+            detectImage();
             saveImage();
             cout << '7' << endl;
         } else if (choose == '8') {
@@ -368,13 +369,18 @@ void darkenImage() {
 }
 
 void detectImage(){
-    int i = 0 , k = 0;
-    int j = 0, l = 0;
-    int mix = 0 ;
+    int i = 0 ;
+    int j = 0 ;
     convertImageToBlackAndWhiteImage();
-    for ( ; i < SIZE; i = i + 3) {
-        for (; j < SIZE; j = j + 3) {
-            mix = (image[i][j] + image[i][j+1] + image[i][j+2] + image[i+1][j]  + image[i+1][j+1] + image[i+1][j+2] + image[i+2][j] + image[i+2][j+1] + image[i +2 ][j+2 ]) % 255;
+    for (; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++ ) {
+            if((image[i][j]) - (image[i+1][j+1]) >= 25){
+                image[i][j] = 0;
+            }else{
+                image[i][j] = 255;
+            }
+
+            /*mix = (image[i][j] + image[i][j+1] + image[i][j+2] + image[i+1][j]  + image[i+1][j+1] + image[i+1][j+2] + image[i+2][j] + image[i+2][j+1] + image[i +2 ][j+2 ]) % 255;
             if (mix == 0 ){
                 for (; k < 3 ; ++k) {
                     for (; l < 3; ++l) {
@@ -383,7 +389,7 @@ void detectImage(){
                 }
             }else if ( mix > 0 && mix < 255 ) {
                 image[i+k][j+l] = 0;
-            }
+            }*/
         }
     }
 }
@@ -500,29 +506,18 @@ void shrinkQuarterImage(){
     }
 }
 
-void blurImage(){
-    for (int i=0; i < SIZE; i ++) {
-        for (int j=0; j < SIZE; j ++ ) {
-                int sum = 0;
-                sum = (image[i][j] + image[i][j+1] + image[i][j+2]  + image[i+1][j] +image[i+1][j+1]+image[i+1][j+2]+image[i+2][j]+image[i+2][j+1]+
-                       image[i+2][j+2])/9;
-                image[i+1][j+1] = sum;
-        }
-    }
-}
 
-/*
 void blurImage(){
     for (int i=0; i < SIZE; ++i) {
         for (int j=0; j < SIZE; ++j ) {
             int sum = 0;
-            for (int k = 0; k < 5; ++k) {
-                for (int l = 0; l < 5; ++l) {
+            for (int k = 0; k < 7; ++k) {
+                for (int l = 0; l < 7; ++l) {
                     sum += image[i + k][j + l];
 
                 }
-            }image[i+2][j+2] = sum;
+            }image[i+3][j+3] = sum/49;
         }
     }
 }
-*/
+
