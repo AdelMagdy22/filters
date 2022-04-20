@@ -709,7 +709,7 @@ void shuffleImage2(int &b) {
 
 void shuffleImage3(int &c) {
     if (c == 1) {
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++) {
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++ , k++) {
             for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
                 for (int m = 0; m < RGB; m++) {
                     rotate[k][l][m] = image[i][j][m];
