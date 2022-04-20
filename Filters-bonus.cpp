@@ -32,7 +32,7 @@ void saveRotate();
 void convertImageToBlackAndWhiteImage();
 
 // declaration of function for invert the colour of image
-//void Invert();
+void Invert();
 
 // declaration of function for two images
 void mergeImage();
@@ -109,7 +109,7 @@ int main() {
         } else if (choose == '2') {
             loadImage();
             // call the Filter 2
-            //Invert();
+            Invert();
             saveImage();
         } else if (choose == '3') {
             loadImage();
@@ -257,6 +257,16 @@ void mergeImage() {
             // get the average of the pixels of the two images
                 avg[i][j][k] = (image[i][j][k] + image2[i][j][k]) / 2;
                 image[i][j][k] = avg[i][j][k];
+            }
+        }
+    }
+}
+void Invert() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            for(int k =0 ; k < RGB ; ++k ){
+                // subtract from 255 the value of pixel to invert the image
+                image[i][j][k] = 255 - image[i][j][k];
             }
         }
     }
