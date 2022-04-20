@@ -61,7 +61,7 @@ void lightenImage();
 // declaration of function for darken an image
 void darkenImage();
 
-void detectImage();
+void detectImageEdges();
 
 void EnlargeImage(int &quarter);
 void EnlargeImage1();
@@ -72,6 +72,8 @@ void EnlargeImage4();
 void shrinkAhalfImage();
 void shrinkAthirdImage();
 void shrinkQuarterImage();
+
+void mirrorImage();
 
 void blurImage();
 
@@ -142,7 +144,7 @@ int main() {
             saveImage();
         } else if (choose == '7') {
             loadImage();
-            detectImage();
+            detectImageEdges();
             saveImage();
             cout << '7' << endl;
         } else if (choose == '8') {
@@ -167,25 +169,22 @@ int main() {
                 cout << "invalid";
             }
             saveRotate();
-            cout << '9' << endl;
         } else if (choose == 'a') {
             loadImage();
+            mirrorImage();
             saveImage();
-            cout << 'a' << endl;
         } else if (choose == 'b') {
             loadImage();
             saveImage();
-            cout << 'b' << endl;
         } else if (choose == 'c') {
             loadImage();
             blurImage();
             saveImage();
-            cout << 'c' << endl;
         } else if (choose == 's') {
             loadImage();
             saveImage();
-            cout << 's' << endl;
         } else {
+            cout<<"See you later";
             return 0;
         }
     }
@@ -368,28 +367,17 @@ void darkenImage() {
     }
 }
 
-void detectImage(){
+void detectImageEdges(){
     int i = 0 ;
     int j = 0 ;
     convertImageToBlackAndWhiteImage();
     for (; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++ ) {
-            if((image[i][j]) - (image[i+1][j+1]) >= 25){
+            if((image[i][j]) - (image[i+1][j+1]) >= 50){
                 image[i][j] = 0;
             }else{
                 image[i][j] = 255;
             }
-
-            /*mix = (image[i][j] + image[i][j+1] + image[i][j+2] + image[i+1][j]  + image[i+1][j+1] + image[i+1][j+2] + image[i+2][j] + image[i+2][j+1] + image[i +2 ][j+2 ]) % 255;
-            if (mix == 0 ){
-                for (; k < 3 ; ++k) {
-                    for (; l < 3; ++l) {
-                        image[i+k][j+l] = 255;
-                    }
-                }
-            }else if ( mix > 0 && mix < 255 ) {
-                image[i+k][j+l] = 0;
-            }*/
         }
     }
 }
@@ -507,6 +495,60 @@ void shrinkQuarterImage(){
 }
 
 
+void mirrorLeftRight() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE / 2 ; j++) {
+            image[i][SIZE - 1 - j] = image[i][j];
+        }
+    }
+}
+
+void mirrorRightLeft() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 256 ; j > SIZE / 2  ; --j) {
+            image[i][SIZE - 1 - j] = image[i][j];
+        }
+    }
+}
+
+void mirrorUpDown() {
+    for (int i = 0; i < SIZE / 2; ++i) {
+        for (int j = 0; j < SIZE ; ++j) {
+            //if (((i > 127) && (j <127)) || ((i < 127) && (j > 127))){
+            image[SIZE - 1 - i][j] = image[i][j];
+            //}
+        }
+    }
+}
+
+void mirrorDownUp() {
+    for (int i = 256; i > SIZE / 2; --i) {
+        for (int j = 0; j < SIZE ; ++j) {
+            //if (((i > 127) && (j <127)) || ((i < 127) && (j > 127))){
+            image[SIZE - 1 - i][j] = image[i][j];
+            //}
+        }
+    }
+}
+
+void mirrorImage() {
+    char mirrorSide;
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? ";
+    cin >> mirrorSide;
+    if (mirrorSide == 'l') {
+        mirrorLeftRight();
+    } else if (mirrorSide == 'r') {
+        mirrorRightLeft();
+    } else if (mirrorSide == 'u') {
+        mirrorUpDown();
+    } else if (mirrorSide == 'd') {
+        mirrorDownUp();
+    } else {
+        cout << "invalid side" << endl;
+    }
+}
+
+
 void blurImage(){
     for (int i=0; i < SIZE; ++i) {
         for (int j=0; j < SIZE; ++j ) {
@@ -520,4 +562,3 @@ void blurImage(){
         }
     }
 }
-
