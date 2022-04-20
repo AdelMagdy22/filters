@@ -44,16 +44,16 @@ void loadSecondImage();
 void flipImage();
 
 // declaration of function for Rotate the Image
-//void rotateImage(int &degreeOfRotate);
+void rotateImage(int &degreeOfRotate);
 
 // declaration of function for rotate the image 180 degree
-//void rotate_180_degree();
+void rotate_180_degree();
 
 // declaration of function for rotate the image 90 degree
-//void rotate_90_degree();
+void rotate_90_degree();
 
 // declaration of function for rotate the image 270 degree
-//void rotate_270_degree();
+void rotate_270_degree();
 
 // declaration of function for lighten an image
 void lightenImage();
@@ -127,8 +127,7 @@ int main() {
             cout << "Rotate (90), (180) or (270) degree? ";
             cin >> degreeOfRotate;
             loadImage();
-            // call the Filter 5
-            //rotateImage(degreeOfRotate);
+            rotateImage(degreeOfRotate);
             saveRotate();
         } else if (choose == '6') {
             char choose1;
@@ -479,3 +478,49 @@ void mirrorImage() {
         cout << "invalid side" << endl;
     }
 }
+void rotateImage(int &degreeOfRotate) {
+    // if the user want to rotate the image 90 degree call the function rotate_90_degree
+    // if the user want to rotate 180 degree call the function rotate_180_degree
+    // if the user want to rotate 2700 degree call the function rotate_270_degree
+    if (degreeOfRotate == 90) {
+        rotate_90_degree();
+    } else if (degreeOfRotate == 180) {
+        rotate_180_degree();
+    } else if (degreeOfRotate == 270) {
+        rotate_270_degree();
+    } else {
+        cout << "invalid degree" << endl;
+    }
+}
+//  definition of function for rotate image by 180 degree
+void rotate_180_degree() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            for(int k=0;k < RGB ; k++){
+                rotate[SIZE - i][SIZE - j][k] = image[i][j][k];
+            }
+        }
+    }
+}
+// definition of function for rotate the image by 90 degree
+void rotate_90_degree() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            for (int k =0; k < RGB ; k++){
+                rotate[i][j][k] = image[SIZE - j][i][k];
+            }
+        }
+    }
+}
+
+// definition of function for rotate the image by 270 degree
+void rotate_270_degree() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            for (int k=0 ; k < RGB ;k++){
+                rotate[i][j][k] = image[j][SIZE - i][k];
+            }
+        }
+    }
+}
+
