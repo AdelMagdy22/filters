@@ -6,7 +6,7 @@
 // Author1:  Adel Magdy Abd El-Hay  ID1 : 20210190  group: S16
 // Author2:  Roaa Talat mohamed  ID2: 20210138  group: S16
 // Author3:  Asmaa Saleh Farghaly  ID3: 20211014  group: S16
-// last UpDate:    21 April 2022
+// last UpDate:    20 April 2022
 
 // import libraries
 #include <iostream>
@@ -343,23 +343,22 @@ void blurImage() {
         }
     }
 }
+
 void convertImageToBlackAndWhiteImage() {
-    int avg = 0;
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            for (int k = 0; k < RGB; ++k) {
-                avg += image[i][j][k];
-            }
+            image[i][j][0] = ((image[i][j][0]) * 0.3);
+            image[i][j][1] = ((image[i][j][1]) * 0.59);
+            image[i][j][2] = ((image[i][j][2]) * 0.11);
         }
     }
-    avg /= (SIZE * SIZE * RGB);
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
             for (int k = 0; k < RGB; ++k) {
-                if (image[i][j][k] > avg) {
-                    image[i][j][k] = 150;
+                if (image[i][j][k] > 127) {
+                    image[i][j][k] = 255;
                 } else {
-                    image[i][j][k] = 70;
+                    image[i][j][k] = 0;
                 }
             }
         }
@@ -376,16 +375,16 @@ void flipImage() {
     }
 }
 
-void detectImageEdges(){
-    int i = 0 ;
-    int j = 0 ;
-    int k = 0 ;
+void detectImageEdges() {
+    int i = 0;
+    int j = 0;
+    int k = 0;
     for (; i < SIZE; i++) {
-        for (; j < SIZE; j++ ) {
-            for (; k < RGB; k++){
-                if((image[i][j][k]) - (image[i+1][j+1][k+1]) >= 25){
+        for (; j < SIZE; j++) {
+            for (; k < RGB; k++) {
+                if ((image[i][j][k]) - (image[i + 1][j + 1][k + 1]) >= 25) {
                     image[i][j][k] = 0;
-                }else{
+                } else {
                     image[i][j][k] = 255;
                 }
             }
@@ -709,7 +708,7 @@ void shuffleImage2(int &b) {
 
 void shuffleImage3(int &c) {
     if (c == 1) {
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++ , k++) {
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
             for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
                 for (int m = 0; m < RGB; m++) {
                     rotate[k][l][m] = image[i][j][m];
