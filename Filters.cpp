@@ -64,29 +64,38 @@ void darkenImage();
 void detectImageEdges();
 
 void EnlargeImage(int &quarter);
+
 void EnlargeImage1();
+
 void EnlargeImage2();
+
 void EnlargeImage3();
+
 void EnlargeImage4();
 
 void shrinkAhalfImage();
+
 void shrinkAthirdImage();
+
 void shrinkQuarterImage();
 
 void mirrorImage();
 
-void blurImage();
-
 void shuffleImage1(int &a);
+
 void shuffleImage2(int &b);
+
 void shuffleImage3(int &c);
+
 void shuffleImage4(int &d);
+
+void blurImage();
 
 
 int main() {
     char choose = ' ';
     while (choose != '0') {
-        cout << "Ahlan ya user ya habibi \U0001F44B\U0001F60A" << endl;
+        cout << "Ahlan ya user ya habibi " << endl;
         cout << "Please select a filter to apply or 0 to exit: " << endl;
         cout << "1- Black & White Filter" << endl;
         cout << "2- Invert Filter" << endl;
@@ -154,34 +163,35 @@ int main() {
             cout << '7' << endl;
         } else if (choose == '8') {
             int quarter;
-            cout<<"which one of the four quarters do you want to get bigger ? ";
-            cin>> quarter;
+            cout << "which one of the four quarters do you want to get bigger ? ";
+            cin >> quarter;
             loadImage();
             EnlargeImage(quarter);
             saveRotate();
         } else if (choose == '9') {
             string choose;
-            cout<<"Shrink to 1/2, 1/3 or 1/4: ";
-            cin>>choose;
+            cout << "Shrink to 1/2, 1/3 or 1/4: ";
+            cin >> choose;
             loadImage();
-            if (choose == "1/2"){
+            if (choose == "1/2") {
                 shrinkAhalfImage();
-            }else if (choose == "1/3"){
+            } else if (choose == "1/3") {
                 shrinkAthirdImage();
-            } else if (choose == "1/4"){
+            } else if (choose == "1/4") {
                 shrinkQuarterImage();
-            }else {
+            } else {
                 cout << "invalid";
             }
             saveRotate();
+            cout << '9' << endl;
         } else if (choose == 'a') {
             loadImage();
             mirrorImage();
             saveImage();
         } else if (choose == 'b') {
-            int a, b, c, d ;
-            cout <<"which order do you want : ";
-            cin >>a >>b >>c >>d ;
+            int a, b, c, d;
+            cout << "which order do you want : ";
+            cin >> a >> b >> c >> d;
             loadImage();
             shuffleImage1(a);
             shuffleImage2(b);
@@ -196,7 +206,7 @@ int main() {
             loadImage();
             saveImage();
         } else {
-            cout<<"See you later";
+            cout << "See you later" << endl;
             return 0;
         }
     }
@@ -379,15 +389,14 @@ void darkenImage() {
     }
 }
 
-void detectImageEdges(){
-    int i = 0 ;
-    int j = 0 ;
-    convertImageToBlackAndWhiteImage();
+void detectImageEdges() {
+    int i = 0;
+    int j = 0;
     for (; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++ ) {
-            if((image[i][j]) - (image[i+1][j+1]) >= 50){
+        for (int j = 0; j < SIZE; j++) {
+            if ((image[i][j]) - (image[i + 1][j + 1]) >= 50) {
                 image[i][j] = 0;
-            }else{
+            } else {
                 image[i][j] = 255;
             }
         }
@@ -395,92 +404,93 @@ void detectImageEdges(){
 }
 
 
-void EnlargeImage(int &quarter){
-    if (quarter == 1){
+void EnlargeImage(int &quarter) {
+    if (quarter == 1) {
         EnlargeImage1();
-    } else if (quarter == 2){
+    } else if (quarter == 2) {
         EnlargeImage2();
-    } else if (quarter ==3){
+    } else if (quarter == 3) {
         EnlargeImage3();
-    } else if (quarter ==4){
+    } else if (quarter == 4) {
         EnlargeImage4();
-    } else{
-        cout << "invalid quarter "<< endl;
+    } else {
+        cout << "invalid quarter " << endl;
     }
 }
 
-void EnlargeImage1(){
-    for (int i = 0 ,k=0; i < (SIZE/2) ,k < SIZE; k+=2 ,i++) {
-        for (int j = 0, l=0; j < (SIZE/2 ),l<SIZE; j++,l+=2){
-            rotate[k][l]=image[i][j];
-            rotate[k][l+1]=image[i][j];
-            rotate[k+1][l]=image[i][j];
-            rotate[k+1][l+1]=image[i][j];
+void EnlargeImage1() {
+    for (int i = 0, k = 0; i < (SIZE / 2), k < SIZE; k += 2, i++) {
+        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) {
+            rotate[k][l] = image[i][j];
+            rotate[k][l + 1] = image[i][j];
+            rotate[k + 1][l] = image[i][j];
+            rotate[k + 1][l + 1] = image[i][j];
 
         }
     }
 }
-void EnlargeImage2(){
-    for (int i = 0 ,k=0; i < SIZE ,k < SIZE; k+=2 ,i++) {
-        for (int j = SIZE/2, l=0; j < SIZE,l<SIZE; j++,l+=2){
-            rotate[k][l]=image[i][j];
-            rotate[k][l+1]=image[i][j];
-            rotate[k+1][l]=image[i][j];
-            rotate[k+1][l+1]=image[i][j];
+
+void EnlargeImage2() {
+    for (int i = 0, k = 0; i < SIZE, k < SIZE; k += 2, i++) {
+        for (int j = SIZE / 2, l = 0; j < SIZE, l < SIZE; j++, l += 2) {
+            rotate[k][l] = image[i][j];
+            rotate[k][l + 1] = image[i][j];
+            rotate[k + 1][l] = image[i][j];
+            rotate[k + 1][l + 1] = image[i][j];
         }
     }
 }
 
-void EnlargeImage3(){
-    for (int i = SIZE/2 ,k=0; i < SIZE ,k < SIZE; k+=2 ,i++) {
-        for (int j = 0, l=0; j < (SIZE/2 ),l<SIZE; j++,l+=2){
-            rotate[k][l]=image[i][j];
-            rotate[k][l+1]=image[i][j];
-            rotate[k+1][l]=image[i][j];
-            rotate[k+1][l+1]=image[i][j];
+void EnlargeImage3() {
+    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) {
+        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) {
+            rotate[k][l] = image[i][j];
+            rotate[k][l + 1] = image[i][j];
+            rotate[k + 1][l] = image[i][j];
+            rotate[k + 1][l + 1] = image[i][j];
         }
     }
 }
 
-void EnlargeImage4(){
-    for (int i = SIZE/2 ,k=0; i < SIZE ,k < SIZE; k+=2 ,i++) {
-        for (int j = SIZE/2, l=0; j < (SIZE/2 ),l<SIZE; j++,l+=2){
-            rotate[k][l]=image[i][j];
-            rotate[k][l+1]=image[i][j];
-            rotate[k+1][l]=image[i][j];
-            rotate[k+1][l+1]=image[i][j];
+void EnlargeImage4() {
+    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) {
+        for (int j = SIZE / 2, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) {
+            rotate[k][l] = image[i][j];
+            rotate[k][l + 1] = image[i][j];
+            rotate[k + 1][l] = image[i][j];
+            rotate[k + 1][l + 1] = image[i][j];
         }
     }
 }
 
-void shrinkAhalfImage(){
+void shrinkAhalfImage() {
     int sum = 0;
     int i = 0, j = 0;
-    for (int i = 0; i < SIZE; i ++) {
-        for (int j = 0; j < SIZE; j ++) {
-                rotate[i][j]=255;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            rotate[i][j] = 255;
         }
     }
-    for (int i = 0,k=0; i < SIZE; i += 2,k++) {
-        for (int j = 0,l=0 ; j < SIZE; j += 2 ,l++) {
-            sum = (image[i][j] + image[i][j+1] + image[i+1][j]  + image[i+1][j+1])/4;
+    for (int i = 0, k = 0; i < SIZE; i += 2, k++) {
+        for (int j = 0, l = 0; j < SIZE; j += 2, l++) {
+            sum = (image[i][j] + image[i][j + 1] + image[i + 1][j] + image[i + 1][j + 1]) / 4;
             rotate[k][l] = sum;
         }
 
     }
 }
 
-void shrinkAthirdImage(){
+void shrinkAthirdImage() {
     int sum = 0;
-    int i = 0, j = 0;
-    for (int i = 0; i < SIZE; i ++) {
-        for (int j = 0; j < SIZE; j ++) {
-                rotate[i][j]=255;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            rotate[i][j] = 255;
         }
     }
-    for (int i = 0,k=0; i < SIZE; i += 3,k++) {
-        for (int j = 0,l=0 ; j < SIZE; j += 3 ,l++) {
-            sum = (image[i][j] + image[i][j+1] + image[i][j+2]  + image[i+1][j] +image[i+1][j+1]+image[i+1][j+2]+image[i+2][j]+image[i+2][j+1]+image[i+2][j+2])/9;
+    for (int i = 0, k = 0; i < SIZE; i += 3, k++) {
+        for (int j = 0, l = 0; j < SIZE; j += 3, l++) {
+            sum = (image[i][j] + image[i][j + 1] + image[i][j + 2] + image[i + 1][j] + image[i + 1][j + 1] +
+                   image[i + 1][j + 2] + image[i + 2][j] + image[i + 2][j + 1] + image[i + 2][j + 2]) / 9;
             rotate[k][l] = sum;
         }
 
@@ -488,18 +498,20 @@ void shrinkAthirdImage(){
 }
 
 
-void shrinkQuarterImage(){
-    int sum = 0;
-    int i = 0, j = 0;
-    for (int i = 0; i < SIZE; i ++) {
-        for (int j = 0; j < SIZE; j ++) {
-                rotate[i][j]=255;
+void shrinkQuarterImage() {
+    int sum;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            rotate[i][j] = 255;
         }
     }
-    for (int i = 0,k=0; i < SIZE; i += 4,k++) {
-        for (int j = 0,l=0 ; j < SIZE; j += 4 ,l++) {
-            sum = (image[i][j] + image[i][j+1] + image[i][j+2]  +image[i][j+3]+ image[i+1][j] +image[i+1][j+1]+image[i+1][j+2]+image[i+1][j+3]+ image[i+2][j]+image[i+2][j+1]
-                   +image[i+2][j+2]+image[i+2][j+3] +image[i+3][j] + image[i+3][j+1] + image[i+3][j+2]  +image[i+3][j+3] )/16;
+    for (int i = 0, k = 0; i < SIZE; i += 4, k++) {
+        for (int j = 0, l = 0; j < SIZE; j += 4, l++) {
+            sum = (image[i][j] + image[i][j + 1] + image[i][j + 2] + image[i][j + 3] + image[i + 1][j] +
+                   image[i + 1][j + 1] + image[i + 1][j + 2] + image[i + 1][j + 3] + image[i + 2][j] +
+                   image[i + 2][j + 1]
+                   + image[i + 2][j + 2] + image[i + 2][j + 3] + image[i + 3][j] + image[i + 3][j + 1] +
+                   image[i + 3][j + 2] + image[i + 3][j + 3]) / 16;
             rotate[k][l] = sum;
         }
 
@@ -509,7 +521,7 @@ void shrinkQuarterImage(){
 
 void mirrorLeftRight() {
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE / 2 ; j++) {
+        for (int j = 0; j < SIZE / 2; j++) {
             image[i][SIZE - 1 - j] = image[i][j];
         }
     }
@@ -517,7 +529,7 @@ void mirrorLeftRight() {
 
 void mirrorRightLeft() {
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 256 ; j > SIZE / 2  ; --j) {
+        for (int j = 256; j > SIZE / 2; --j) {
             image[i][SIZE - 1 - j] = image[i][j];
         }
     }
@@ -525,7 +537,7 @@ void mirrorRightLeft() {
 
 void mirrorUpDown() {
     for (int i = 0; i < SIZE / 2; ++i) {
-        for (int j = 0; j < SIZE ; ++j) {
+        for (int j = 0; j < SIZE; ++j) {
             //if (((i > 127) && (j <127)) || ((i < 127) && (j > 127))){
             image[SIZE - 1 - i][j] = image[i][j];
             //}
@@ -535,10 +547,9 @@ void mirrorUpDown() {
 
 void mirrorDownUp() {
     for (int i = 256; i > SIZE / 2; --i) {
-        for (int j = 0; j < SIZE ; ++j) {
-            //if (((i > 127) && (j <127)) || ((i < 127) && (j > 127))){
+        for (int j = 0; j < SIZE; ++j) {
             image[SIZE - 1 - i][j] = image[i][j];
-            //}
+
         }
     }
 }
@@ -560,126 +571,130 @@ void mirrorImage() {
     }
 }
 
+void shuffleImage1(int &a) {
+    if (a == 1) {
+        for (int i = 0; i < SIZE / 2; i++) {
+            for (int j = 0; j < SIZE / 2; j++) {
+                rotate[i][j] = image[i][j];
+            }
+        }
+    } else if (a == 2) {
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (a == 3) {
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (a == 4) {
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    }
+}
 
-void blurImage(){
-    for (int i=0; i < SIZE; ++i) {
-        for (int j=0; j < SIZE; ++j ) {
+void shuffleImage2(int &b) {
+    if (b == 1) {
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (b == 2) {
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (b == 3) {
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (b == 4) {
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    }
+}
+
+void shuffleImage3(int &c) {
+    if (c == 1) {
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++) {
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (c == 2) {
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (c == 3) {
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (c == 4) {
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    }
+}
+
+void shuffleImage4(int &d) {
+    if (d == 1) {
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (d == 2) {
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (d == 3) {
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (d == 4) {
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    }
+}
+
+
+void blurImage() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
             int sum = 0;
             for (int k = 0; k < 7; ++k) {
                 for (int l = 0; l < 7; ++l) {
                     sum += image[i + k][j + l];
 
                 }
-            }image[i+3][j+3] = sum/49;
+            }
+            image[i + 3][j + 3] = sum / 49;
         }
     }
 }
-void shuffleImage1(int &a){
-    if (a==1){
-        for(int i =0;i<SIZE/2 ;i++){
-            for(int j =0;j<SIZE/2 ;j++){
-                rotate[i][j]=image[i][j];
-            }
-        }
-    }else if(a==2){
-        for(int i =0 ,k=0;i<SIZE/2 ;i++ ,k++){
-            for(int j =SIZE/2, l=0;j<SIZE ;j++ ,l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if (a==3){
-        for(int i =SIZE/2,k=0;i<SIZE ;i++,k++){
-            for(int j =0 ,l=0;j<SIZE/2 ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(a==4){
-        for(int i =SIZE/2,k=0;i<SIZE ;i++,k++){
-            for(int j =SIZE/2 ,l=0;j<SIZE ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }
-}
-void shuffleImage2(int &b){
-    if (b==1){
-        for(int i =0,k=0;i<SIZE/2 ;i++,k++){
-            for(int j =0,l=SIZE/2;j<SIZE/2 ;j++,l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(b==2){
-        for(int i =0 ,k=0;i<SIZE/2 ;i++ ,k++){
-            for(int j =SIZE/2, l=SIZE/2;j<SIZE ;j++ ,l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if (b==3){
-        for(int i =SIZE/2,k=0;i<SIZE ;i++,k++){
-            for(int j =0 ,l=SIZE/2;j<SIZE/2 ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(b==4){
-        for(int i =SIZE/2,k=0;i<SIZE ;i++,k++){
-            for(int j =SIZE/2 ,l=SIZE/2;j<SIZE ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }
-}
-void shuffleImage3(int &c){
-    if (c==1){
-        for(int i =0,k=SIZE/2;i<SIZE/2 ;i++){
-            for(int j =0,l=0;i<SIZE/2 ;j++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(c==2){
-        for(int i =0 ,k=SIZE/2;i<SIZE/2 ;i++ ,k++){
-            for(int j =SIZE/2, l=0;i<SIZE ;j++ ,l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if (c==3){
-        for(int i =SIZE/2,k=SIZE/2;i<SIZE ;i++,k++){
-            for(int j =0 ,l=0;i<SIZE/2 ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(c==4){
-        for(int i =SIZE/2,k=SIZE/2;i<SIZE ;i++,k++){
-            for(int j =SIZE/2 ,l=0;i<SIZE ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }
-}
-void shuffleImage4(int &d){
-    if (d==1){
-        for(int i =0,k=SIZE/2;i<SIZE/2 ;i++,k++){
-            for(int j =0, l=SIZE/2;i<SIZE/2 ;j++,l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(d==2){
-        for(int i =0 ,k=SIZE/2;i<SIZE/2 ;i++ ,k++){
-            for(int j =SIZE/2, l=SIZE/2;i<SIZE ;j++ ,l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if (d==3){
-        for(int i =SIZE/2,k=SIZE/2;i<SIZE ;i++,k++){
-            for(int j =0 ,l=SIZE/2;i<SIZE/2 ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }else if(d==4){
-        for(int i =SIZE/2,k=SIZE/2;i<SIZE ;i++,k++){
-            for(int j =SIZE/2 ,l=SIZE/2;i<SIZE ;j++, l++){
-                rotate[k][l]=image[i][j];
-            }
-        }
-    }
-}
-
