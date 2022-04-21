@@ -345,11 +345,13 @@ void blurImage() {
 }
 
 void convertImageToBlackAndWhiteImage() {
+    int gray;
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
-            image[i][j][0] = ((image[i][j][0]) * 0.3);
-            image[i][j][1] = ((image[i][j][1]) * 0.59);
-            image[i][j][2] = ((image[i][j][2]) * 0.11);
+            gray = ((image[i][j][0]) * 0.3) + ((image[i][j][1]) * 0.59) + ((image[i][j][2]) * 0.11);
+            image[i][j][0] = gray;
+            image[i][j][1] = gray;
+            image[i][j][2] = gray;
         }
     }
     for (int i = 0; i < SIZE; ++i) {
@@ -360,6 +362,7 @@ void convertImageToBlackAndWhiteImage() {
                 } else {
                     image[i][j][k] = 0;
                 }
+
             }
         }
     }
