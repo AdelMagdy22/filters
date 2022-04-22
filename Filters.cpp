@@ -6,7 +6,7 @@
 // Author1:  Adel Magdy Abd El-Hay  ID1 : 20210190  group: S16
 // Author2:  Roaa Talat mohamed  ID2: 20210138  group: S16
 // Author3:  Asmaa Saleh Farghaly  ID3: 20211014  group: S16
-// last UpDate:    7 April 2022
+// last UpDate:    22 April 2022
 
 // import libraries
 #include <iostream>
@@ -61,40 +61,43 @@ void lightenImage();
 // declaration of function for darken an image
 void darkenImage();
 
+// declaration of function for
 void detectImageEdges();
 
+// declaration of function for
 void EnlargeImage(int &quarter);
-
 void EnlargeImage1();
-
 void EnlargeImage2();
-
 void EnlargeImage3();
-
 void EnlargeImage4();
 
+// declaration of function for shrink Image to a half
 void shrinkAhalfImage();
-
+// declaration of function for shrink Image to a third
 void shrinkAthirdImage();
-
+// declaration of function for shrink Image to a quarter
 void shrinkQuarterImage();
 
+// mirror half image
 void mirrorImage();
 
+// declaration of function for shuffle Image
 void shuffleImage1(int &a);
-
 void shuffleImage2(int &b);
-
 void shuffleImage3(int &c);
-
 void shuffleImage4(int &d);
 
+// declaration of function for blur the Image
 void blurImage();
 
 
-int main() {
+int main()
+{
     char choose = ' ';
-    while (choose != '0') {
+    while (choose != '0')
+    {
+        // enter face of the program
+        // let the user to choose what the filter he/she wants
         cout << "Ahlan ya user ya habibi " << endl;
         cout << "Please select a filter to apply or 0 to exit: " << endl;
         cout << "1- Black & White Filter" << endl;
@@ -112,28 +115,33 @@ int main() {
         cout << "s- Save the image to a file" << endl;
         cout << "0- Exit" << endl;
         cin >> choose;
-        if (choose == '1') {
+        if (choose == '1')
+        {
             loadImage();
             // call the Filter 1
             convertImageToBlackAndWhiteImage();
             saveImage();
-        } else if (choose == '2') {
+        } else if (choose == '2')
+        {
             loadImage();
             // call the Filter 2
             Invert();
             saveImage();
-        } else if (choose == '3') {
+        } else if (choose == '3')
+        {
             loadImage();
             // call the Filter 3
             loadSecondImage();
             mergeImage();
             saveImage();
-        } else if (choose == '4') {
+        } else if (choose == '4')
+        {
             loadImage();
             // call the Filter 4
             flipImage();
             saveImage();
-        } else if (choose == '5') {
+        } else if (choose == '5')
+        {
             int degreeOfRotate;
             cout << "Rotate (90), (180) or (270) degree? ";
             cin >> degreeOfRotate;
@@ -141,54 +149,71 @@ int main() {
             // call the Filter 5
             rotateImage(degreeOfRotate);
             saveRotate();
-        } else if (choose == '6') {
+        } else if (choose == '6')
+        {
             char choose1;
             cout << "do you want to (d)arken or (l)ighten? ";
             cin >> choose1;
             loadImage();
-            if (choose1 == 'l') {
+            if (choose1 == 'l')
+            {
                 // call the Filter 6 (ligthen)
                 lightenImage();
-            } else if (choose1 == 'd') {
+            } else if (choose1 == 'd')
+            {
                 // call the Filter 6 (darken)
                 darkenImage();
-            } else {
+            } else
+            {
                 cout << "invalid";
             }
             saveImage();
-        } else if (choose == '7') {
+        } else if (choose == '7')
+        {
             loadImage();
+             // call the Filter 7
             detectImageEdges();
             saveImage();
-            cout << '7' << endl;
-        } else if (choose == '8') {
+        } else if (choose == '8')
+        {
             int quarter;
             cout << "which one of the four quarters do you want to get bigger ? ";
             cin >> quarter;
             loadImage();
+            // call the Filter 8
             EnlargeImage(quarter);
             saveRotate();
-        } else if (choose == '9') {
+        } else if (choose == '9')
+        {
             string choose;
             cout << "Shrink to 1/2, 1/3 or 1/4: ";
             cin >> choose;
             loadImage();
-            if (choose == "1/2") {
+            if (choose == "1/2")
+            {
+                // call the Filter (a half)
                 shrinkAhalfImage();
-            } else if (choose == "1/3") {
+            } else if (choose == "1/3")
+            {
+                // call the Filter (a third)
                 shrinkAthirdImage();
-            } else if (choose == "1/4") {
+            } else if (choose == "1/4")
+            {
+                // call the Filter (a quarter)
                 shrinkQuarterImage();
-            } else {
+            } else
+            {
                 cout << "invalid";
             }
             saveRotate();
-            cout << '9' << endl;
-        } else if (choose == 'a') {
+        } else if (choose == 'a')
+        {
             loadImage();
+            // call the Filter a
             mirrorImage();
             saveImage();
-        } else if (choose == 'b') {
+        } else if (choose == 'b')
+        {
             int a, b, c, d;
             cout << "which order do you want : ";
             cin >> a >> b >> c >> d;
@@ -198,14 +223,18 @@ int main() {
             shuffleImage3(c);
             shuffleImage4(d);
             saveRotate();
-        } else if (choose == 'c') {
+        } else if (choose == 'c')
+        {
             loadImage();
+            // call the Filter c
             blurImage();
             saveImage();
-        } else if (choose == 's') {
+        } else if (choose == 's')
+        {
             loadImage();
             saveImage();
-        } else {
+        } else
+        {
             cout << "See you later" << endl;
             return 0;
         }
@@ -214,7 +243,8 @@ int main() {
 }
 
 // definition of function for load the image
-void loadImage() {
+void loadImage()
+{
     char imageFileName[100];
 
     // Get gray scale image file name
@@ -239,37 +269,21 @@ void saveImage() {
     writeGSBMP(imageFileName, image);
 }
 
-// definition of function for save the rotate image
-void saveRotate() {
-    char imageFileName[100];
-
-    // Get gray scale image target file name
-    cout << "Enter the target image file name: ";
-    cin >> imageFileName;
-
-    // Add to image file name .bmp extension and load image
-    strcat(imageFileName, ".bmp");
-    writeGSBMP(imageFileName, rotate);
-}
-
 // definition of function for convert image to black and white image
-void convertImageToBlackAndWhiteImage() {
-    // inatialize average to calculate the average of the pixels of image
-    int avg = 0;
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            avg += image[i][j];
-        }
-    }
-    avg /= (SIZE * SIZE);
-
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            if (image[i][j] > avg) {
-                // convert all pixels that greater than average to White
+void convertImageToBlackAndWhiteImage()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (image[i][j] > 127)
+            {
+                // convert all pixels that greater than 127(level of gray is low) to White
                 image[i][j] = 255;
-            } else {
-                // convert all pixels that less than average to Black
+            } else
+            {
+                // convert all pixels that less than 127(level of gray is high) to Black
                 image[i][j] = 0;
             }
         }
@@ -278,9 +292,13 @@ void convertImageToBlackAndWhiteImage() {
 
 // definition of function for invert evere black pixel turned to white and every white pixel
 // turned to black and every gray pixel is turned to opposite level of brightness
-void Invert() {
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
+void Invert()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; ++i)
+    {
+        for (int j = 0; j < SIZE; ++j)
+        {
             // subtract from 255 the value of pixel to invert the image
             image[i][j] = 255 - image[i][j];
         }
@@ -288,7 +306,8 @@ void Invert() {
 }
 
 // definition of function for load the second image
-void loadSecondImage() {
+void loadSecondImage()
+{
     char image2FileName[100];
 
     // Get gray scale image file name
@@ -301,11 +320,15 @@ void loadSecondImage() {
 }
 
 // definition of function for to merge two images to one image
-void mergeImage() {
+void mergeImage()
+{
     // initialize average matrix
     int avg[SIZE][SIZE];
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; ++i)
+    {
+        for (int j = 0; j < SIZE; ++j)
+         {
             // get the average of the pixels of the two images
             avg[i][j] = (image[i][j] + image2[i][j]) / 2;
             image[i][j] = avg[i][j];
@@ -314,9 +337,13 @@ void mergeImage() {
 }
 
 //  definition of function for Flip The Image
-void flipImage() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0, k = SIZE - 1; j < k; j++, k--) {
+void flipImage()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0, k = SIZE - 1; j < k; j++, k--)
+        {
             // reverse elements of every column.
             swap(image[j][i], image[k][i]);
         }
@@ -324,27 +351,39 @@ void flipImage() {
 }
 
 //  definition of function for rotate image by 180 degree
-void rotate_180_degree() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+void rotate_180_degree()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             rotate[SIZE - i][SIZE - j] = image[i][j];
         }
     }
 }
 
 // definition of function for rotate the image by 90 degree
-void rotate_90_degree() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+void rotate_90_degree()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             rotate[i][j] = image[SIZE - j][i];
         }
     }
 }
 
 // definition of function for rotate the image by 270 degree
-void rotate_270_degree() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+void rotate_270_degree()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             rotate[i][j] = image[j][SIZE - i];
         }
     }
@@ -352,26 +391,50 @@ void rotate_270_degree() {
 
 
 // definition of function for rotate the image like the user want (90), (180) or (270)
-void rotateImage(int &degreeOfRotate) {
+void rotateImage(int &degreeOfRotate)
+{
     // if the user want to rotate the image 90 degree call the function rotate_90_degree
     // if the user want to rotate 180 degree call the function rotate_180_degree
     // if the user want to rotate 2700 degree call the function rotate_270_degree
-    if (degreeOfRotate == 90) {
+    if (degreeOfRotate == 90)
+    {
         rotate_90_degree();
-    } else if (degreeOfRotate == 180) {
+    } else if (degreeOfRotate == 180)
+    {
         rotate_180_degree();
-    } else if (degreeOfRotate == 270) {
+    } else if (degreeOfRotate == 270)
+    {
         rotate_270_degree();
     } else {
         cout << "invalid degree" << endl;
     }
 }
 
+// definition of function for save the rotate image
+void saveRotate()
+{
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to image file name .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    writeGSBMP(imageFileName, rotate);
+}
+
+
 // definition of function for lighten the image
-void lightenImage() {
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            if ((image[i][j] *= 1.5) > 255) {
+void lightenImage()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; ++i)
+    {
+        for (int j = 0; j < SIZE; ++j)
+        {
+            if ((image[i][j] *= 1.5) > 255)
+            {
                 image[i][j] = 255;
             } else {
                 image[i][j] *= 1.5;
@@ -381,22 +444,33 @@ void lightenImage() {
 }
 
 // definition of function for darken the image
-void darkenImage() {
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
+void darkenImage()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; ++i)
+    {
+        for (int j = 0; j < SIZE; ++j)
+        {
             image[i][j] *= 0.5;
         }
     }
 }
 
-void detectImageEdges() {
-    int i = 0;
-    int j = 0;
-    for (; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            if ((image[i][j]) - (image[i + 1][j + 1]) >= 50) {
+// definition of function for detect the edges of an image
+void detectImageEdges()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            // if result of subtract two adjecant pixels greater than or equal to 20 (convert it to black)
+            // else (convert the pixel to white)
+            if ((image[i][j]) - (image[i + 1][j + 1]) >= 20)
+            {
                 image[i][j] = 0;
-            } else {
+            } else
+            {
                 image[i][j] = 255;
             }
         }
@@ -404,23 +478,33 @@ void detectImageEdges() {
 }
 
 
-void EnlargeImage(int &quarter) {
-    if (quarter == 1) {
+void EnlargeImage(int &quarter)
+{
+    if (quarter == 1)
+    {
         EnlargeImage1();
-    } else if (quarter == 2) {
+    } else if (quarter == 2)
+    {
         EnlargeImage2();
-    } else if (quarter == 3) {
+    } else if (quarter == 3)
+    {
         EnlargeImage3();
-    } else if (quarter == 4) {
+    } else if (quarter == 4)
+    {
         EnlargeImage4();
-    } else {
+    } else
+    {
         cout << "invalid quarter " << endl;
     }
 }
 
-void EnlargeImage1() {
-    for (int i = 0, k = 0; i < (SIZE / 2), k < SIZE; k += 2, i++) {
-        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) {
+void EnlargeImage1()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0, k = 0; i < (SIZE / 2), k < SIZE; k += 2, i++)
+    {
+        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
+        {
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -430,9 +514,13 @@ void EnlargeImage1() {
     }
 }
 
-void EnlargeImage2() {
-    for (int i = 0, k = 0; i < SIZE, k < SIZE; k += 2, i++) {
-        for (int j = SIZE / 2, l = 0; j < SIZE, l < SIZE; j++, l += 2) {
+void EnlargeImage2()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0, k = 0; i < SIZE, k < SIZE; k += 2, i++)
+    {
+        for (int j = SIZE / 2, l = 0; j < SIZE, l < SIZE; j++, l += 2)
+        {
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -441,9 +529,13 @@ void EnlargeImage2() {
     }
 }
 
-void EnlargeImage3() {
-    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) {
-        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) {
+void EnlargeImage3()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++)
+    {
+        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
+        {
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -452,9 +544,13 @@ void EnlargeImage3() {
     }
 }
 
-void EnlargeImage4() {
-    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) {
-        for (int j = SIZE / 2, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) {
+void EnlargeImage4()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++)
+    {
+        for (int j = SIZE / 2, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
+        {
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -463,16 +559,22 @@ void EnlargeImage4() {
     }
 }
 
-void shrinkAhalfImage() {
+void shrinkAhalfImage()
+{
     int sum = 0;
-    int i = 0, j = 0;
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             rotate[i][j] = 255;
         }
     }
-    for (int i = 0, k = 0; i < SIZE; i += 2, k++) {
-        for (int j = 0, l = 0; j < SIZE; j += 2, l++) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0, k = 0; i < SIZE; i += 2, k++)
+    {
+        for (int j = 0, l = 0; j < SIZE; j += 2, l++)
+        {
             sum = (image[i][j] + image[i][j + 1] + image[i + 1][j] + image[i + 1][j + 1]) / 4;
             rotate[k][l] = sum;
         }
@@ -480,15 +582,22 @@ void shrinkAhalfImage() {
     }
 }
 
-void shrinkAthirdImage() {
+void shrinkAthirdImage()
+{
     int sum = 0;
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             rotate[i][j] = 255;
         }
     }
-    for (int i = 0, k = 0; i < SIZE; i += 3, k++) {
-        for (int j = 0, l = 0; j < SIZE; j += 3, l++) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0, k = 0; i < SIZE; i += 3, k++)
+    {
+        for (int j = 0, l = 0; j < SIZE; j += 3, l++)
+        {
             sum = (image[i][j] + image[i][j + 1] + image[i][j + 2] + image[i + 1][j] + image[i + 1][j + 1] +
                    image[i + 1][j + 2] + image[i + 2][j] + image[i + 2][j + 1] + image[i + 2][j + 2]) / 9;
             rotate[k][l] = sum;
@@ -498,15 +607,22 @@ void shrinkAthirdImage() {
 }
 
 
-void shrinkQuarterImage() {
+void shrinkQuarterImage()
+{
     int sum;
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             rotate[i][j] = 255;
         }
     }
-    for (int i = 0, k = 0; i < SIZE; i += 4, k++) {
-        for (int j = 0, l = 0; j < SIZE; j += 4, l++) {
+    // 2 nested loops to loop in each pixel
+    for (int i = 0, k = 0; i < SIZE; i += 4, k++)
+    {
+        for (int j = 0, l = 0; j < SIZE; j += 4, l++)
+        {
             sum = (image[i][j] + image[i][j + 1] + image[i][j + 2] + image[i][j + 3] + image[i + 1][j] +
                    image[i + 1][j + 1] + image[i + 1][j + 2] + image[i + 1][j + 3] + image[i + 2][j] +
                    image[i + 2][j + 1]
@@ -518,180 +634,286 @@ void shrinkQuarterImage() {
     }
 }
 
-
-void mirrorLeftRight() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE / 2; j++) {
+// definition of function for mirror the half left to right
+void mirrorLeftRight()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE / 2; j++)// we loop in columns to (SIZE / 2) because to mirror half of image
+        {
+            // mirror each pixel
+            // ex: the pixel [0][0] will mirror in pixel [0][255]
+            // the pixel [0][1] will mirror in pixel [0][254] and so on
             image[i][SIZE - 1 - j] = image[i][j];
         }
     }
 }
 
-void mirrorRightLeft() {
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 256; j > SIZE / 2; --j) {
+// definition of function for mirror the half right to left
+void mirrorRightLeft()
+{
+     // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 256; j > SIZE / 2; --j)// we loop in columns to (SIZE / 2) because to mirror half of image
+                                            // we inverse the count to start from the end
+        {
+            // mirror each pixel
+            // ex: the pixel [0][0] will mirror in pixel [0][255]
+            // the pixel [0][1] will mirror in pixel [0][254] and so on
             image[i][SIZE - 1 - j] = image[i][j];
         }
     }
 }
 
+// definition of function for mirror the half Up to Down
 void mirrorUpDown() {
-    for (int i = 0; i < SIZE / 2; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            //if (((i > 127) && (j <127)) || ((i < 127) && (j > 127))){
+    for (int i = 0; i < SIZE / 2; ++i)// we loop in columns to (SIZE / 2) because to mirror half of image
+    {
+        for (int j = 0; j < SIZE; ++j)
+        {
+            // mirror each pixel
+            // ex: the pixel [0][0] will mirror in pixel [255][0]
+            // the pixel [1][0] will mirror in pixel [254][0] and so on
             image[SIZE - 1 - i][j] = image[i][j];
-            //}
         }
     }
 }
 
+// definition of function for mirror the half Down to Up
 void mirrorDownUp() {
-    for (int i = 256; i > SIZE / 2; --i) {
-        for (int j = 0; j < SIZE; ++j) {
+    for (int i = 256; i > SIZE / 2; --i)// we loop in columns to (SIZE / 2) because to mirror half of image
+                                        // we inverse the count to start from the end
+    {
+        for (int j = 0; j < SIZE; ++j)
+        {
+            // mirror each pixel
+            // ex: the pixel [0][0] will mirror in pixel [255][0]
+            // the pixel [1][0] will mirror in pixel [254][0] and so on
             image[SIZE - 1 - i][j] = image[i][j];
 
         }
     }
 }
 
-void mirrorImage() {
+void mirrorImage()
+{
     char mirrorSide;
     cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? ";
     cin >> mirrorSide;
-    if (mirrorSide == 'l') {
+    if (mirrorSide == 'l')
+    {
         mirrorLeftRight();
-    } else if (mirrorSide == 'r') {
+    } else if (mirrorSide == 'r')
+    {
         mirrorRightLeft();
-    } else if (mirrorSide == 'u') {
+    } else if (mirrorSide == 'u')
+    {
         mirrorUpDown();
-    } else if (mirrorSide == 'd') {
+    } else if (mirrorSide == 'd')
+    {
         mirrorDownUp();
-    } else {
+    } else
+    {
         cout << "invalid side" << endl;
     }
 }
 
-void shuffleImage1(int &a) {
-    if (a == 1) {
-        for (int i = 0; i < SIZE / 2; i++) {
-            for (int j = 0; j < SIZE / 2; j++) {
+void shuffleImage1(int &a)
+{
+    if (a == 1)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0; i < SIZE / 2; i++)
+        {
+            for (int j = 0; j < SIZE / 2; j++)
+            {
                 rotate[i][j] = image[i][j];
             }
         }
-    } else if (a == 2) {
-        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
+    } else if (a == 2)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
+        {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (a == 3) {
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
-            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
+    } else if (a == 3)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        {
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (a == 4) {
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    }
-}
-
-void shuffleImage2(int &b) {
-    if (b == 1) {
-        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    } else if (b == 2) {
-        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    } else if (b == 3) {
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    } else if (b == 4) {
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
+    } else if (a == 4)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
     }
 }
 
-void shuffleImage3(int &c) {
-    if (c == 1) {
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++) {
-            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
+void shuffleImage2(int &b)
+{
+    if (b == 1)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
+        {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (c == 2) {
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
+    } else if (b == 2)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
+        {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (c == 3) {
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
-            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) {
+    } else if (b == 3)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (c == 4) {
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    }
-}
-
-void shuffleImage4(int &d) {
-    if (d == 1) {
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    } else if (d == 2) {
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++) {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    } else if (d == 3) {
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++) {
-                rotate[k][l] = image[i][j];
-            }
-        }
-    } else if (d == 4) {
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++) {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++) {
+    } else if (b == 4)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            {
                 rotate[k][l] = image[i][j];
             }
         }
     }
 }
 
+void shuffleImage3(int &c)
+{
+    if (c == 1)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++)
+        {
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (c == 2)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+        {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (c == 3)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        {
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (c == 4)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        {
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    }
+}
 
-void blurImage() {
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
+void shuffleImage4(int &d)
+{
+    if (d == 1)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+            {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (d == 2)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+        {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+                {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (d == 3)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        {
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    } else if (d == 4)
+    {
+        // 2 nested loops to loop in each pixel
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        {
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            {
+                rotate[k][l] = image[i][j];
+            }
+        }
+    }
+}
+
+
+void blurImage()
+{
+    // 2 nested loops to loop in each pixel
+    for (int i = 0; i < SIZE; ++i)
+    {
+        for (int j = 0; j < SIZE; ++j)
+        {
             int sum = 0;
-            for (int k = 0; k < 7; ++k) {
-                for (int l = 0; l < 7; ++l) {
+            for (int k = 0; k < 7; ++k)
+            {
+                for (int l = 0; l < 7; ++l)
+                {
                     sum += image[i + k][j + l];
-
                 }
             }
             image[i + 3][j + 3] = sum / 49;
