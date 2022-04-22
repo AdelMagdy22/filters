@@ -733,9 +733,10 @@ void mirrorImage()
     }
 }
 
+// declaration of function for put any quarter of the image in the first quarter of the image.
 void shuffleImage1(int &a)
 {
-    if (a == 1)
+    if (a == 1) //if user choose 1  ,put first quarter in first quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0; i < SIZE / 2; i++)
@@ -745,7 +746,7 @@ void shuffleImage1(int &a)
                 rotate[i][j] = image[i][j];
             }
         }
-    } else if (a == 2)
+    } else if (a == 2) //if user choose 2 ,put second quarter in first quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
@@ -755,7 +756,7 @@ void shuffleImage1(int &a)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (a == 3)
+    } else if (a == 3) //if user choose 3 ,put third quarter in first quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
@@ -765,7 +766,7 @@ void shuffleImage1(int &a)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (a == 4)
+    } else if (a == 4) //if user choose 4 ,put fourth quarter in first quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
@@ -778,9 +779,10 @@ void shuffleImage1(int &a)
     }
 }
 
+// declaration of function for put any quarter of the image in the second quarter of the image.
 void shuffleImage2(int &b)
 {
-    if (b == 1)
+    if (b == 1) //if user choose 1 ,put first quarter in second quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
@@ -790,7 +792,7 @@ void shuffleImage2(int &b)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (b == 2)
+    } else if (b == 2) //if user choose 2 ,put second quarter in second quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
@@ -800,7 +802,7 @@ void shuffleImage2(int &b)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (b == 3)
+    } else if (b == 3) //if user choose 3 ,put third quarter in second quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
@@ -810,7 +812,7 @@ void shuffleImage2(int &b)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (b == 4)
+    } else if (b == 4) //if user choose 4 ,put fourth quarter in second quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
@@ -823,9 +825,10 @@ void shuffleImage2(int &b)
     }
 }
 
+// declaration of function for put any quarter of the image in the third quarter of the image.
 void shuffleImage3(int &c)
 {
-    if (c == 1)
+    if (c == 1) //if user choose 1 ,put first quarter in third quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++)
@@ -835,7 +838,7 @@ void shuffleImage3(int &c)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (c == 2)
+    } else if (c == 2) //if user choose 2 ,put second quarter in third quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
@@ -845,7 +848,7 @@ void shuffleImage3(int &c)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (c == 3)
+    } else if (c == 3) //if user choose 3 ,put third quarter in third quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
@@ -855,7 +858,7 @@ void shuffleImage3(int &c)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (c == 4)
+    } else if (c == 4) //if user choose 4 ,put fourth quarter in third quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
@@ -868,9 +871,10 @@ void shuffleImage3(int &c)
     }
 }
 
+// declaration of function for put any quarter of the image in the fourth quarter of the image.
 void shuffleImage4(int &d)
 {
-    if (d == 1)
+    if (d == 1)  //if user choose 1 ,put first quarter in fourth quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
@@ -880,7 +884,7 @@ void shuffleImage4(int &d)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (d == 2)
+    } else if (d == 2) //if user choose 2 ,put second quarter in fourth quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
@@ -890,7 +894,7 @@ void shuffleImage4(int &d)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (d == 3)
+    } else if (d == 3) //if user choose 3 ,put third quarter in fourth quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
@@ -900,7 +904,7 @@ void shuffleImage4(int &d)
                 rotate[k][l] = image[i][j];
             }
         }
-    } else if (d == 4)
+    } else if (d == 4) //if user choose 4 ,put fourth quarter in fourth quarter of new image
     {
         // 2 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
