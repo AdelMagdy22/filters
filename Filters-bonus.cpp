@@ -6,7 +6,7 @@
 // Author1:  Adel Magdy Abd El-Hay  ID1 : 20210190  group: S16
 // Author2:  Roaa Talat mohamed  ID2: 20210138  group: S16
 // Author3:  Asmaa Saleh Farghaly  ID3: 20211014  group: S16
-// last UpDate:    21 April 2022
+// last UpDate:    22 April 2022
 
 // import libraries
 #include <iostream>
@@ -181,6 +181,7 @@ int main()
             // call the Filter 7
             detectImageEdges();
             saveImage();
+            cout << '7' << endl;
         } else if (choose == '8')
         {
             int quarter;
@@ -770,7 +771,7 @@ void mirrorRightLeft()
 void mirrorUpDown()
 {
      // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE / 2; ++i))// we loop in rows to (SIZE / 2) because to mirror half of image
+    for (int i = 0; i < SIZE / 2; ++i)// we loop in rows to (SIZE / 2) because to mirror half of image
     {
         for (int j = 0; j < SIZE; ++j)
         {
