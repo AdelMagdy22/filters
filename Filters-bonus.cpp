@@ -282,9 +282,9 @@ void convertImageToGray()
 {
     double gray;
     // 2 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows 
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns
         {
             // equation for percentage of (red, green and blue) in gray image
             // to convert all pixels to gray scale
@@ -304,11 +304,11 @@ void convertImageToBlackAndWhiteImage()
     // to make the convert easier
     convertImageToGray();
     // nested 3 for loops to loop each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows 
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
                 // if the value of pixel greater than 127 (that refer to the level of colour in that pixel is low )
                 // else (that refer to the level of colour in that pixel is high )
@@ -328,11 +328,11 @@ void convertImageToBlackAndWhiteImage()
 void Invert()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows 
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
                 // subtract from 255 the value of pixel to invert the image
                 image[i][j][k] = 255 - image[i][j][k];
@@ -360,11 +360,11 @@ void mergeImage()
     // initialize average matrix
     int avg[SIZE][SIZE][RGB];
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns 
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k)// loop for colour
             {
                 // get the average of the pixels of the two images
                 avg[i][j][k] = (image[i][j][k] + image2[i][j][k]) / 2;
@@ -378,12 +378,13 @@ void mergeImage()
 void flipImage()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows
     {
-        for (int j = 0, a = SIZE - 1; j < a; j++, a--)
+        for (int j = 0, a = SIZE - 1; j < a; j++, a--) // loop for columns 
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
+                // swap each pixel to get the flip image 
                 swap(image[j][i][k], image[a][i][k]);
             }
         }
@@ -394,11 +395,11 @@ void flipImage()
 void rotate_180_degree()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows  
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++) // loop for columns 
         {
-            for (int k = 0; k < RGB; k++)
+            for (int k = 0; k < RGB; k++) // loop for colour
             {
                 rotate[SIZE - i][SIZE - j][k] = image[i][j][k];
             }
@@ -410,11 +411,11 @@ void rotate_180_degree()
 void rotate_90_degree()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows 
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++) // loop for columns 
         {
-            for (int k = 0; k < RGB; k++)
+            for (int k = 0; k < RGB; k++) // loop for colour
             {
                 rotate[i][j][k] = image[SIZE - j][i][k];
             }
@@ -426,11 +427,11 @@ void rotate_90_degree()
 void rotate_270_degree()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows 
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++) // loop for columns 
         {
-            for (int k = 0; k < RGB; k++)
+            for (int k = 0; k < RGB; k++) // loop for colour
             {
                 rotate[i][j][k] = image[j][SIZE - i][k];
             }
@@ -476,12 +477,12 @@ void saveRotate()
 void lightenImage()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows 
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns 
         {
-            for (int k = 0; k < RGB; ++k)
-            { 
+            for (int k = 0; k < RGB; ++k) // loop for colour
+            {
                 //if the result of multiplying each pixel by 1.5 bigger than 255 let it be 255(be white)
                 //else multiply each pixel by 1.5(be lighten)
                 if ((image[i][j][k] *= 1.5) > 255)
@@ -500,12 +501,12 @@ void lightenImage()
 void darkenImage()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows 
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns 
         {
-            for (int k = 0; k < RGB; ++k)
-            { 
+            for (int k = 0; k < RGB; ++k) // loop for colour
+            {
                 //multiply each pixel by 0.5(be darken)
                 image[i][j][k] *= 0.5;
             }
@@ -519,11 +520,11 @@ void detectImageEdges()
     // call function convertImageToGray
     convertImageToGray();
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns 
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
                 // if result of subtract two adjecant pixels greater than or equal to 5 (convert the first pixel to black)
                 // else (convert the first pixel to white)
@@ -544,11 +545,11 @@ void detectImageEdges()
 void EnlargeImage1()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0, k = 0; i < (SIZE / 2), k < SIZE; k += 2, i++)
+    for (int i = 0, k = 0; i < (SIZE / 2), k < SIZE; k += 2, i++) // loop for rows
     {
-        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
+        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) // loop for columns 
         {
-            for (int m = 0; m < RGB; m++)
+            for (int m = 0; m < RGB; m++) // loop for colour
             {
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
@@ -562,11 +563,11 @@ void EnlargeImage1()
 void EnlargeImage2()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0, k = 0; i < SIZE, k < SIZE; k += 2, i++)
+    for (int i = 0, k = 0; i < SIZE, k < SIZE; k += 2, i++)  // loop for rows 
     {
-        for (int j = SIZE / 2, l = 0; j < SIZE, l < SIZE; j++, l += 2)
+        for (int j = SIZE / 2, l = 0; j < SIZE, l < SIZE; j++, l += 2) // loop for columns 
         {
-            for (int m = 0; m < RGB; m++)
+            for (int m = 0; m < RGB; m++) // loop for colour
             {
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
@@ -580,11 +581,11 @@ void EnlargeImage2()
 void EnlargeImage3()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++)
+    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) // loop for rows 
     {
-        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
+        for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) // loop for columns 
         {
-            for (int m = 0; m < RGB; m++)
+            for (int m = 0; m < RGB; m++) // loop for colour
             {
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
@@ -598,11 +599,11 @@ void EnlargeImage3()
 void EnlargeImage4()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++)
+    for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) // loop for rows 
     {
-        for (int j = SIZE / 2, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
+        for (int j = SIZE / 2, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2) // loop for columns 
         {
-            for (int m = 0; m < RGB; m++)
+            for (int m = 0; m < RGB; m++) // loop for colour
             {
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
@@ -640,23 +641,23 @@ void shrinkAhalfImage()
     int sum = 0;
     // 3 nested loops to loop in each pixel
     //convert each pixel to white
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows 
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++) // loop for columns 
         {
-            for (int n = 0; n < RGB; n++)
+            for (int n = 0; n < RGB; n++) // loop for colour
             {
                 rotate[i][j][n] = 255;
             }
         }
     }
     // 3 nested loops to loop in each pixel
-    for (int i = 0, k = 0; i < SIZE; i += 2, k++)
+    for (int i = 0, k = 0; i < SIZE; i += 2, k++) // loop for rows 
     {
-        for (int j = 0, l = 0; j < SIZE; j += 2, l++)
+        for (int j = 0, l = 0; j < SIZE; j += 2, l++) // loop for columns 
         {
-            for (int n = 0; n < RGB; n++)
-            { 
+            for (int n = 0; n < RGB; n++) // loop for colour
+            {
                 //get the average of 4 pixels (square)
                 // take this average and put it in the rotate
                 sum = (image[i][j][n] + image[i][j + 1][n] + image[i + 1][j][n] + image[i + 1][j + 1][n]) / 4;
@@ -672,23 +673,23 @@ void shrinkAthirdImage()
     int sum = 0;
     // 3 nested loops to loop in each pixel
     //convert each pixel to white
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows 
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++) // loop for columns 
         {
-            for (int n = 0; n < RGB; n++)
+            for (int n = 0; n < RGB; n++) // loop for colour
             {
                 rotate[i][j][n] = 255;
             }
         }
     }
     // 3 nested loops to loop in each pixel
-    for (int i = 0, k = 0; i < SIZE; i += 3, k++)
+    for (int i = 0, k = 0; i < SIZE; i += 3, k++) // loop for rows 
     {
-        for (int j = 0, l = 0; j < SIZE; j += 3, l++)
+        for (int j = 0, l = 0; j < SIZE; j += 3, l++) // loop for columns 
         {
-            for (int n = 0; n < RGB; n++)
-            { 
+            for (int n = 0; n < RGB; n++) // loop for colour
+            {
                 //get the average of 9 pixels
                 // take this average and put it in the rotate
                 sum = (image[i][j][n] + image[i][j + 1][n] + image[i][j + 2][n] + image[i + 1][j][n] +
@@ -706,26 +707,25 @@ void shrinkAthirdImage()
 void shrinkQuarterImage()
 {
     int sum = 0;
-    int i = 0, j = 0;
     // 3 nested loops to loop in each pixel
-     //convert each pixel to white
-    for (int i = 0; i < SIZE; i++)
+    //convert each pixel to white
+    for (int i = 0; i < SIZE; i++) // loop for rows  
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++) // loop for columns
         {
-            for (int n = 0; n < RGB; n++)
+            for (int n = 0; n < RGB; n++)  // loop for colour
             {
                 rotate[i][j][n] = 255;
             }
         }
     }
     // 3 nested loops to loop in each pixel
-    for (int i = 0, k = 0; i < SIZE; i += 4, k++)
+    for (int i = 0, k = 0; i < SIZE; i += 4, k++) // loop for rows 
     {
-        for (int j = 0, l = 0; j < SIZE; j += 4, l++)
+        for (int j = 0, l = 0; j < SIZE; j += 4, l++) // loop for columns 
         {
-            for (int n = 0; n < RGB; n++)
-            { 
+            for (int n = 0; n < RGB; n++) // loop for colour
+            {
                 //get the average of 16 pixels
                 // take this average and put it in the rotate
                 sum = (image[i][j][n] + image[i][j + 1][n] + image[i][j + 2][n] + image[i][j + 3][n] +
@@ -744,11 +744,11 @@ void shrinkQuarterImage()
 void mirrorLeftRight()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows  
     {
         for (int j = 0; j < SIZE / 2; j++)// we loop in columns to (SIZE / 2) because to mirror half of image
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
                 // mirror each pixel
                 // ex: the pixel [0][0][0] will mirror in pixel [0][255][0]
@@ -763,12 +763,12 @@ void mirrorLeftRight()
 void mirrorRightLeft()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++) // loop for rows  
     {
         for (int j = 256; j > SIZE / 2; --j)// we loop in columns to (SIZE / 2) because to mirror half of image
                                             // we inverse the count to start from the end
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k)// loop for colour
             {
                 // mirror each pixel
                 // ex: the pixel [0][0][0] will mirror in pixel [0][255][0]
@@ -785,9 +785,9 @@ void mirrorUpDown()
      // 3 nested loops to loop in each pixel
     for (int i = 0; i < SIZE / 2; ++i)// we loop in rows to (SIZE / 2) because to mirror half of image
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns  
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
                 // mirror each pixel
                 // ex: the pixel [0][0][0] will mirror in pixel [255][0][0]
@@ -805,9 +805,9 @@ void mirrorDownUp()
     for (int i = 255; i > SIZE / 2; --i)// we loop in rows to (SIZE / 2) because to mirror half of image
                                         // we inverse the count to start from the end
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns 
         {
-            for (int k = 0; k < RGB; ++k)
+            for (int k = 0; k < RGB; ++k) // loop for colour
             {
                 // mirror each pixel
                 // ex: the pixel [0][0][0] will mirror in pixel [255][0][0]
@@ -858,11 +858,11 @@ void shuffleImage1(int &a)
     if (a == 1)
     {
          // 3 nested loops to loop in each pixel
-        for (int i = 0; i < SIZE / 2; i++)
+        for (int i = 0; i < SIZE / 2; i++) // loop for rows 
         {
-            for (int j = 0; j < SIZE / 2; j++)
+            for (int j = 0; j < SIZE / 2; j++) // loop for columns 
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++) // loop for colour
                 {
                     rotate[i][j][m] = image[i][j][m];
                 }
@@ -871,11 +871,11 @@ void shuffleImage1(int &a)
     } else if (a == 2)
     {
          // 3 nested loops to loop in each pixel
-        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++) // loop for rows 
         {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++) // loop for columns 
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++) // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
@@ -884,11 +884,12 @@ void shuffleImage1(int &a)
     } else if (a == 3)
     {
          // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) // loop for rows 
         {
-            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++) // loop for columns 
             {
-                for (int m = 0; m < RGB; m++) {
+                for (int m = 0; m < RGB; m++) // loop for colour 
+                { 
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
@@ -896,11 +897,11 @@ void shuffleImage1(int &a)
     } else if (a == 4)
     {
          // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) // loop for rows
         {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)  // loop for columns 
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++) // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
@@ -1084,26 +1085,26 @@ void shuffleImage4(int &d)
 void blurImage()
 {
     // 3 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) // loop for rows  
     {
-        for (int j = 0; j < SIZE; ++j)
+        for (int j = 0; j < SIZE; ++j) // loop for columns 
         {
-            for (int m = 0; m < RGB; ++m)
-            { 
+            for (int m = 0; m < RGB; ++m) // loop for colour
+            {
                 // 3 nested loops to loop in each pixel
                 //this loop will make a cube of pixels (7rows, 7columns, 7channels)
                 int sum = 0;
-                for (int k = 0; k < 7; ++k)
+                for (int k = 0; k < 7; ++k) // loop for rows 
                 {
-                    for (int l = 0; l < 7; ++l)
+                    for (int l = 0; l < 7; ++l) // loop for columns 
                     {
-                        for (int n = 0; n < 7; ++n)
-                        { 
+                        for (int n = 0; n < 7; ++n) // loop for colour
+                        {
                             //sum of this pixels
                             sum += image[i + k][j + l][m + n];
                         }
                     }
-                } 
+                }
                 //put the average of this pixels in the middle of the cube
                 image[i + 3][j + 3][m + 3] = sum / 343;
             }
