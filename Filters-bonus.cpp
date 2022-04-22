@@ -481,7 +481,9 @@ void lightenImage()
         for (int j = 0; j < SIZE; ++j)
         {
             for (int k = 0; k < RGB; ++k)
-            {
+            { 
+                //if the result of multiplying each pixel by 1.5 bigger than 255 let it be 255(be white)
+                //else multiply each pixel by 1.5(be lighten)
                 if ((image[i][j][k] *= 1.5) > 255)
                 {
                     image[i][j][k] = 255;
@@ -503,7 +505,8 @@ void darkenImage()
         for (int j = 0; j < SIZE; ++j)
         {
             for (int k = 0; k < RGB; ++k)
-            {
+            { 
+                //multiply each pixel by 0.5(be darken)
                 image[i][j][k] *= 0.5;
             }
         }
@@ -636,6 +639,7 @@ void shrinkAhalfImage()
 {
     int sum = 0;
     // 3 nested loops to loop in each pixel
+    //convert each pixel to white
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -652,7 +656,9 @@ void shrinkAhalfImage()
         for (int j = 0, l = 0; j < SIZE; j += 2, l++)
         {
             for (int n = 0; n < RGB; n++)
-            {
+            { 
+                //get the average of 4 pixels (square)
+                // take this average and put it in the rotate
                 sum = (image[i][j][n] + image[i][j + 1][n] + image[i + 1][j][n] + image[i + 1][j + 1][n]) / 4;
                 rotate[k][l][n] = sum;
             }
@@ -665,6 +671,7 @@ void shrinkAthirdImage()
 {
     int sum = 0;
     // 3 nested loops to loop in each pixel
+    //convert each pixel to white
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -681,7 +688,9 @@ void shrinkAthirdImage()
         for (int j = 0, l = 0; j < SIZE; j += 3, l++)
         {
             for (int n = 0; n < RGB; n++)
-            {
+            { 
+                //get the average of 9 pixels
+                // take this average and put it in the rotate
                 sum = (image[i][j][n] + image[i][j + 1][n] + image[i][j + 2][n] + image[i + 1][j][n] +
                        image[i + 1][j + 1][n]
                        + image[i + 1][j + 2][n] + image[i + 2][j][n] + image[i + 2][j + 1][n] +
@@ -699,6 +708,7 @@ void shrinkQuarterImage()
     int sum = 0;
     int i = 0, j = 0;
     // 3 nested loops to loop in each pixel
+     //convert each pixel to white
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -715,7 +725,9 @@ void shrinkQuarterImage()
         for (int j = 0, l = 0; j < SIZE; j += 4, l++)
         {
             for (int n = 0; n < RGB; n++)
-            {
+            { 
+                //get the average of 16 pixels
+                // take this average and put it in the rotate
                 sum = (image[i][j][n] + image[i][j + 1][n] + image[i][j + 2][n] + image[i][j + 3][n] +
                        image[i + 1][j][n] + image[i + 1][j + 1][n] + image[i + 1][j + 2][n] + image[i + 1][j + 3][n] +
                        image[i + 2][j][n] + image[i + 2][j + 1][n]
@@ -1077,18 +1089,22 @@ void blurImage()
         for (int j = 0; j < SIZE; ++j)
         {
             for (int m = 0; m < RGB; ++m)
-            {
+            { 
+                // 3 nested loops to loop in each pixel
+                //this loop will make a cube of pixels (7rows, 7columns, 7channels)
                 int sum = 0;
                 for (int k = 0; k < 7; ++k)
                 {
                     for (int l = 0; l < 7; ++l)
                     {
                         for (int n = 0; n < 7; ++n)
-                        {
+                        { 
+                            //sum of this pixels
                             sum += image[i + k][j + l][m + n];
                         }
                     }
-                }
+                } 
+                //put the average of this pixels in the middle of the cube
                 image[i + 3][j + 3][m + 3] = sum / 343;
             }
         }
