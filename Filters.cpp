@@ -358,6 +358,7 @@ void rotate_180_degree()
     {
         for (int j = 0; j < SIZE; j++)
         {
+            // subtract elements from the size to flip the image.
             rotate[SIZE - i][SIZE - j] = image[i][j];
         }
     }
@@ -371,6 +372,7 @@ void rotate_90_degree()
     {
         for (int j = 0; j < SIZE; j++)
         {
+            // subtract row from the size to rotate image by 90 degree.
             rotate[i][j] = image[SIZE - j][i];
         }
     }
@@ -384,10 +386,12 @@ void rotate_270_degree()
     {
         for (int j = 0; j < SIZE; j++)
         {
+            // subtract column from the size to rotate image by 270 degree.
             rotate[i][j] = image[j][SIZE - i];
         }
     }
 }
+
 
 
 // definition of function for rotate the image like the user want (90), (180) or (270)
