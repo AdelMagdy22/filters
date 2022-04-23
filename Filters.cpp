@@ -485,8 +485,8 @@ void detectImageEdges()
     {
         for (int j = 0; j < SIZE; j++)
         {
-            // if result of subtract two adjecant pixels greater than or equal to 20 (convert it to black)
-            // else (convert the pixel to white)
+            // if result of subtract two adjecant pixels greater than or equal to 20 (convert the first pixel to black)
+            // else (convert the first pixel to white)
             if ((image[i][j]) - (image[i + 1][j + 1]) >= 20)
             {
                 image[i][j] = 0;
