@@ -46,17 +46,10 @@ void flipImage();
 // declaration of function for darken an image
 void darkenImage();
 
-// declaration of function for Rotate the Image
-void rotateImage(int &degreeOfRotate);
-
-// declaration of function for rotate the image 180 degree
-void rotate_180_degree();
-
-// declaration of function for rotate the image 90 degree
-void rotate_90_degree();
-
-// declaration of function for rotate the image 270 degree
-void rotate_270_degree();
+void rotateImage(int &degreeOfRotate);  // definition of function for rotate the image like the user want (90), (180) or (270)
+void rotate_180_degree();  // declaration of function for rotate the image 180 degree
+void rotate_90_degree();  // declaration of function for rotate the image 90 degree
+void rotate_270_degree();  // declaration of function for rotate the image 270 degree
 
 // declaration of function for to load new image for rotate
 void saveRotate();
@@ -68,12 +61,12 @@ void lightenImage();
 // declaration of function for detect edges of image
 void detectImageEdges();
 
-// declaration of function for enlarge image
-void EnlargeImage(int &quarter);
-void EnlargeImage1();
-void EnlargeImage2();
-void EnlargeImage3();
-void EnlargeImage4();
+void EnlargeImage(int &quarter);  // definition of function enlarge quarter the image like the user want (1), (2), (3) or (4)
+void EnlargeImage1();  //declaration of function for enlarge first quarter of image.
+void EnlargeImage2();  //declaration of function for enlarge second quarter of image.
+void EnlargeImage3();  //declaration of function for enlarge third quarter of image.
+void EnlargeImage4();  //declaration of function for enlarge fourth quarter of image.
+
 
 // declaration of function for shrink image to a half
 void shrinkAhalfImage();
@@ -89,11 +82,11 @@ void mirrorUpDown();
 void mirrorRightLeft();
 void mirrorLeftRight();
 
-// declaration of function for shuffle image
-void shuffleImage1(int &a);
-void shuffleImage2(int &b);
-void shuffleImage3(int &c);
-void shuffleImage4(int &d);
+void shuffleImage1(int &a);  // declaration of function for put any quarter of the image in the first quarter of the image.
+void shuffleImage2(int &b);  // declaration of function for put any quarter of the image in the second quarter of the image.
+void shuffleImage3(int &c);  // declaration of function for put any quarter of the image in the third quarter of the image.
+void shuffleImage4(int &d);  // declaration of function for put any quarter of the image in the fourth quarter of the image.
+
 
 // declaration of function for blur image
 void blurImage();
@@ -401,6 +394,7 @@ void rotate_180_degree()
         {
             for (int k = 0; k < RGB; k++) // loop for colour
             {
+                // subtract elements from the size to flip the image.and save it in new image.
                 rotate[SIZE - i][SIZE - j][k] = image[i][j][k];
             }
         }
@@ -417,6 +411,7 @@ void rotate_90_degree()
         {
             for (int k = 0; k < RGB; k++) // loop for colour
             {
+                // subtract row from the size to rotate image by 90 degree.and save it in new image.
                 rotate[i][j][k] = image[SIZE - j][i][k];
             }
         }
@@ -433,6 +428,7 @@ void rotate_270_degree()
         {
             for (int k = 0; k < RGB; k++) // loop for colour
             {
+                // subtract column from the size to rotate image by 270 degree. and save it in new image.
                 rotate[i][j][k] = image[j][SIZE - i][k];
             }
         }
@@ -542,7 +538,7 @@ void detectImageEdges()
     }
 }
 
-void EnlargeImage1()
+void EnlargeImage1()  // definition of function for enlarge first quarter of image
 {
     // 3 nested loops to loop in each pixel
     for (int i = 0, k = 0; i < (SIZE / 2), k < SIZE; k += 2, i++) // loop for rows
@@ -551,6 +547,7 @@ void EnlargeImage1()
         {
             for (int m = 0; m < RGB; m++) // loop for colour
             {
+                // copy every pixel in first quarter 4 time in new image .  
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
                 rotate[k + 1][l][m] = image[i][j][m];
@@ -560,7 +557,7 @@ void EnlargeImage1()
     }
 }
 
-void EnlargeImage2()
+void EnlargeImage2()  // definition of function for enlarge second quarter of image
 {
     // 3 nested loops to loop in each pixel
     for (int i = 0, k = 0; i < SIZE, k < SIZE; k += 2, i++)  // loop for rows 
@@ -569,6 +566,7 @@ void EnlargeImage2()
         {
             for (int m = 0; m < RGB; m++) // loop for colour
             {
+                // copy every pixel in second quarter 4 time in new image .
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
                 rotate[k + 1][l][m] = image[i][j][m];
@@ -578,7 +576,7 @@ void EnlargeImage2()
     }
 }
 
-void EnlargeImage3()
+void EnlargeImage3()  // definition of function for enlarge third quarter of image
 {
     // 3 nested loops to loop in each pixel
     for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) // loop for rows 
@@ -587,6 +585,7 @@ void EnlargeImage3()
         {
             for (int m = 0; m < RGB; m++) // loop for colour
             {
+                // copy every pixel in third quarter 4 time in new image .
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
                 rotate[k + 1][l][m] = image[i][j][m];
@@ -596,7 +595,7 @@ void EnlargeImage3()
     }
 }
 
-void EnlargeImage4()
+void EnlargeImage4()  // definition of function for enlarge fourth quarter of image
 {
     // 3 nested loops to loop in each pixel
     for (int i = SIZE / 2, k = 0; i < SIZE, k < SIZE; k += 2, i++) // loop for rows 
@@ -605,6 +604,7 @@ void EnlargeImage4()
         {
             for (int m = 0; m < RGB; m++) // loop for colour
             {
+                // copy every pixel in fourth quarter 4 time in new image .
                 rotate[k][l][m] = image[i][j][m];
                 rotate[k][l + 1][m] = image[i][j][m];
                 rotate[k + 1][l][m] = image[i][j][m];
@@ -614,7 +614,7 @@ void EnlargeImage4()
     }
 }
 
-// definition of function for EnlargeImage
+// definition of function enlarge quarter the image like the user want (1), (2), (3) or (4)
 void EnlargeImage(int &quarter)
 {
     if (quarter == 1)
@@ -852,10 +852,10 @@ void mirrorImage()
     }
 }
 
-// definition of function for shuffle Image
+// declaration of function for put any quarter of the image in the first quarter of the image.
 void shuffleImage1(int &a)
 {
-    if (a == 1)
+    if (a == 1)  //if user choose 1  ,put first quarter in first quarter of new image
     {
          // 3 nested loops to loop in each pixel
         for (int i = 0; i < SIZE / 2; i++) // loop for rows 
@@ -868,7 +868,7 @@ void shuffleImage1(int &a)
                 }
             }
         }
-    } else if (a == 2)
+    } else if (a == 2)  //if user choose 2 ,put second quarter in first quarter of new image
     {
          // 3 nested loops to loop in each pixel
         for (int i = 0, k = 0; i < SIZE / 2; i++, k++) // loop for rows 
@@ -881,7 +881,7 @@ void shuffleImage1(int &a)
                 }
             }
         }
-    } else if (a == 3)
+    } else if (a == 3)   //if user choose 3 ,put third quarter in first quarter of new image
     {
          // 3 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) // loop for rows 
@@ -894,7 +894,7 @@ void shuffleImage1(int &a)
                 }
             }
         }
-    } else if (a == 4)
+    } else if (a == 4)  //if user choose 4 ,put fourth quarter in first quarter of new image
     {
          // 3 nested loops to loop in each pixel
         for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++) // loop for rows
@@ -910,55 +910,56 @@ void shuffleImage1(int &a)
     }
 }
 
+// declaration of function for put any quarter of the image in the second quarter of the image.
 void shuffleImage2(int &b)
 {
-    if (b == 1)
+    if (b == 1)  //if user choose 1 ,put first quarter in second quarter of new image
     {
          // 3 nested loops to loop in each pixel
-        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)  // loop for rows
         {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (b == 2)
+    } else if (b == 2)  //if user choose 2 ,put second quarter in second quarter of new image
     {
          // 3 nested loops to loop in each pixel
-        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = 0; i < SIZE / 2; i++, k++)  // loop for rows
         {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (b == 3)
+    } else if (b == 3)  //if user choose 3 ,put third quarter in second quarter of new image
     {
          // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)  // loop for rows
         {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (b == 4)
+    } else if (b == 4)  //if user choose 4 ,put fourth quarter in second quarter of new image
     {
          // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = 0; i < SIZE; i++, k++)  // loop for rows
         {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
@@ -967,55 +968,56 @@ void shuffleImage2(int &b)
     }
 }
 
+// declaration of function for put any quarter of the image in the third quarter of the image.
 void shuffleImage3(int &c)
 {
-    if (c == 1)
+    if (c == 1)  //if user choose 1 ,put first quarter in third quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)  // loop for rows
         {
-            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (c == 2)
+    } else if (c == 2)  //if user choose 2 ,put second quarter in third quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)  // loop for rows
         {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (c == 3)
+    } else if (c == 3)  //if user choose 3 ,put third quarter in third quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)  // loop for rows
         {
-            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = 0; j < SIZE / 2; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (c == 4)
+    } else if (c == 4)  //if user choose 4 ,put fourth quarter in third quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)  // loop for rows
         {
-            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = 0; j < SIZE; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
@@ -1024,55 +1026,56 @@ void shuffleImage3(int &c)
     }
 }
 
+// declaration of function for put any quarter of the image in the fourth quarter of the image.
 void shuffleImage4(int &d)
 {
-    if (d == 1)
+    if (d == 1)  //if user choose 1 ,put first quarter in fourth quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)  // loop for rows
         {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (d == 2)
+    } else if (d == 2)  //if user choose 2 ,put second quarter in fourth quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
+        for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)  // loop for rows
         {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (d == 3)
+    } else if (d == 3)  //if user choose 3 ,put third quarter in fourth quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)  // loop for rows
         {
-            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
+            for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
             }
         }
-    } else if (d == 4)
+    } else if (d == 4)  //if user choose 4 ,put fourth quarter in fourth quarter of new image
     {
         // 3 nested loops to loop in each pixel
-        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)
+        for (int i = SIZE / 2, k = SIZE / 2; i < SIZE; i++, k++)  // loop for rows
         {
-            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
+            for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)  // loop for columns
             {
-                for (int m = 0; m < RGB; m++)
+                for (int m = 0; m < RGB; m++)  // loop for colour
                 {
                     rotate[k][l][m] = image[i][j][m];
                 }
@@ -1080,6 +1083,7 @@ void shuffleImage4(int &d)
         }
     }
 }
+
 
 // definition of function for blur Image
 void blurImage()
