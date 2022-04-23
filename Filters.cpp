@@ -64,11 +64,19 @@ void darkenImage();
 // declaration of function for
 void detectImageEdges();
 
-// declaration of function for
+// declaration of function for enlarge the images
 void EnlargeImage(int &quarter);
+
+//declaration of function for enlarge first quarter of image.
 void EnlargeImage1();
+
+//declaration of function for enlarge second quarter of image.
 void EnlargeImage2();
+
+//declaration of function for enlarge third quarter of image.
 void EnlargeImage3();
+
+//declaration of function for enlarge fourth quarter of image.
 void EnlargeImage4();
 
 // declaration of function for shrink Image to a half
@@ -81,10 +89,16 @@ void shrinkQuarterImage();
 // mirror half image
 void mirrorImage();
 
-// declaration of function for shuffle Image
+// declaration of function for put any quarter of the image in the first quarter of the image.
 void shuffleImage1(int &a);
+
+// declaration of function for put any quarter of the image in the second quarter of the image.
 void shuffleImage2(int &b);
+
+// declaration of function for put any quarter of the image in the third quarter of the image.
 void shuffleImage3(int &c);
+
+// declaration of function for put any quarter of the image in the fourth quarter of the image.
 void shuffleImage4(int &d);
 
 // declaration of function for blur the Image
