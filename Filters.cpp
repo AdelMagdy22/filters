@@ -706,7 +706,8 @@ void mirrorRightLeft()
 }
 
 // definition of function for mirror the half Up to Down
-void mirrorUpDown() {
+void mirrorUpDown() 
+{
     for (int i = 0; i < SIZE / 2; ++i)// we loop in columns to (SIZE / 2) because to mirror half of image
     {
         for (int j = 0; j < SIZE; ++j)
@@ -720,7 +721,8 @@ void mirrorUpDown() {
 }
 
 // definition of function for mirror the half Down to Up
-void mirrorDownUp() {
+void mirrorDownUp()
+{
     for (int i = 256; i > SIZE / 2; --i)// we loop in columns to (SIZE / 2) because to mirror half of image
                                         // we inverse the count to start from the end
     {
@@ -903,7 +905,7 @@ void shuffleImage4(int &d)
     {
         // 2 nested loops to loop in each pixel
         for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
-            {
+        {
             for (int j = 0, l = SIZE / 2; j < SIZE / 2; j++, l++)
             {
                 rotate[k][l] = image[i][j];
@@ -915,7 +917,7 @@ void shuffleImage4(int &d)
         for (int i = 0, k = SIZE / 2; i < SIZE / 2; i++, k++)
         {
             for (int j = SIZE / 2, l = SIZE / 2; j < SIZE; j++, l++)
-                {
+            {
                 rotate[k][l] = image[i][j];
             }
         }
