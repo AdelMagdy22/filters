@@ -480,7 +480,7 @@ void detectImageEdges()
     }
 }
 
-
+// definition of function enlarge quarter the image like the user want (1), (2), (3) or (4)
 void EnlargeImage(int &quarter)
 {
     if (quarter == 1)
@@ -501,6 +501,7 @@ void EnlargeImage(int &quarter)
     }
 }
 
+// definition of function for enlarge first quarter of image
 void EnlargeImage1()
 {
     // 2 nested loops to loop in each pixel
@@ -508,6 +509,7 @@ void EnlargeImage1()
     {
         for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
         {
+            // copy every pixel in first quarter 4 time in new image .
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -517,6 +519,7 @@ void EnlargeImage1()
     }
 }
 
+// definition of function for enlarge second quarter of image
 void EnlargeImage2()
 {
     // 2 nested loops to loop in each pixel
@@ -524,6 +527,7 @@ void EnlargeImage2()
     {
         for (int j = SIZE / 2, l = 0; j < SIZE, l < SIZE; j++, l += 2)
         {
+            // copy every pixel in second quarter 4 time in new image .
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -532,6 +536,7 @@ void EnlargeImage2()
     }
 }
 
+// definition of function for enlarge third quarter of image
 void EnlargeImage3()
 {
     // 2 nested loops to loop in each pixel
@@ -539,6 +544,7 @@ void EnlargeImage3()
     {
         for (int j = 0, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
         {
+            // copy every pixel in third quarter 4 time in new image .
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -547,6 +553,7 @@ void EnlargeImage3()
     }
 }
 
+// definition of function for enlarge fourth quarter of image
 void EnlargeImage4()
 {
     // 2 nested loops to loop in each pixel
@@ -554,6 +561,7 @@ void EnlargeImage4()
     {
         for (int j = SIZE / 2, l = 0; j < (SIZE / 2), l < SIZE; j++, l += 2)
         {
+            // copy every pixel in fourth quarter 4 time in new image .
             rotate[k][l] = image[i][j];
             rotate[k][l + 1] = image[i][j];
             rotate[k + 1][l] = image[i][j];
@@ -561,7 +569,6 @@ void EnlargeImage4()
         }
     }
 }
-
 void shrinkAhalfImage()
 {
     int sum = 0;
