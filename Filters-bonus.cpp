@@ -305,7 +305,8 @@ void convertImageToBlackAndWhiteImage()
             {
                 // if the value of pixel greater than 127 (that refer to the level of colour in that pixel is low )
                 // else (that refer to the level of colour in that pixel is high )
-                if (image[i][j][k] > 127) {
+                if (image[i][j][k] > 127) 
+                {
                     // convert the pixel of image to white
                     image[i][j][k] = 255;
                 } else {
@@ -534,7 +535,6 @@ void detectImageEdges()
             }
 
         }
-
     }
 }
 
@@ -699,7 +699,6 @@ void shrinkAthirdImage()
                 rotate[k][l][n] = sum;
             }
         }
-
     }
 }
 
@@ -736,7 +735,6 @@ void shrinkQuarterImage()
                 rotate[k][l][n] = sum;
             }
         }
-
     }
 }
 
