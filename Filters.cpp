@@ -11,6 +11,7 @@
 // import libraries
 #include <iostream>
 #include <cstring>
+#include <cmath>
 #include "bmplib.cpp"
 
 using namespace std;
@@ -185,7 +186,7 @@ int main()
         } else if (choose == '7')
         {
             loadImage();
-             // call the Filter 7
+            // call the Filter 7
             detectImageEdges();
             saveImage();
         } else if (choose == '8')
@@ -342,7 +343,7 @@ void mergeImage()
     for (int i = 0; i < SIZE; ++i)
     {
         for (int j = 0; j < SIZE; ++j)
-         {
+        {
             // get the average of the pixels of the two images
             avg[i][j] = (image[i][j] + image2[i][j]) / 2;
             image[i][j] = avg[i][j];
@@ -451,13 +452,17 @@ void lightenImage()
     {
         for (int j = 0; j < SIZE; ++j)
         {
-            //if the result of multiplying each pixel by 1.5 bigger than 255 let it be 255(be white)
-            //else multiply each pixel by 1.5(be lighten)
-            if ((image[i][j] *= 1.5) > 255)
-            {
-                image[i][j] = 255;
-            } else {
-                image[i][j] *= 1.5;
+            // if the value of each pixel not equal to 255 power that pixel with (0.8) and add 110 and
+            //   if that value greater than 255 substract 255 and assign the value to the pixel
+            //   else assign the value to the pixel
+            if(image[i][j] != 255){
+                int img = pow(image[i][j], 0.8) + 110;
+                if ((img) > 255)
+                {
+                    image[i][j] = img - 255;
+                } else {
+                    image[i][j] = img;
+                }
             }
         }
     }
@@ -481,17 +486,17 @@ void darkenImage()
 void detectImageEdges()
 {
     // 2 nested loops to loop in each pixel
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            // if result of subtract two adjecant pixels greater than or equal to 20 (convert the first pixel to black)
+    int diff = 35;
+    for(int i = 0 ; i < SIZE; i++){
+        for(int j = 0 ; j < SIZE; j++){
+            // comparing each pixel with the pixels arround it
+            // if result of subtract two adjecant pixels greater than or equal to 35 (convert the first pixel to black 'edge')
             // else (convert the first pixel to white)
-            if ((image[i][j]) - (image[i + 1][j + 1]) >= 20)
+            if(image[i][j] - image[i + 1][j] >= diff || image[i][j] - image[i + 1][j] <= (diff * (-1)) || image[i][j] - image[i][j + 1] >= diff || image[i][j] - image[i][j + 1] <= (diff * (-1)))
             {
                 image[i][j] = 0;
-            } else
-            {
+            }
+            else{
                 image[i][j] = 255;
             }
         }
@@ -691,11 +696,11 @@ void mirrorLeftRight()
 // definition of function for mirror the half right to left
 void mirrorRightLeft()
 {
-     // 2 nested loops to loop in each pixel
+    // 2 nested loops to loop in each pixel
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 256; j > SIZE / 2; --j)// we loop in columns to (SIZE / 2) because to mirror half of image
-                                            // we inverse the count to start from the end
+            // we inverse the count to start from the end
         {
             // mirror each pixel
             // ex: the pixel [0][0] will mirror in pixel [0][255]
@@ -706,8 +711,7 @@ void mirrorRightLeft()
 }
 
 // definition of function for mirror the half Up to Down
-void mirrorUpDown() 
-{
+void mirrorUpDown() {
     for (int i = 0; i < SIZE / 2; ++i)// we loop in columns to (SIZE / 2) because to mirror half of image
     {
         for (int j = 0; j < SIZE; ++j)
@@ -721,10 +725,9 @@ void mirrorUpDown()
 }
 
 // definition of function for mirror the half Down to Up
-void mirrorDownUp()
-{
+void mirrorDownUp() {
     for (int i = 256; i > SIZE / 2; --i)// we loop in columns to (SIZE / 2) because to mirror half of image
-                                        // we inverse the count to start from the end
+        // we inverse the count to start from the end
     {
         for (int j = 0; j < SIZE; ++j)
         {
